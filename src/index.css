@@ -1,0 +1,131 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+
+@layer base {
+  :root {
+    --color-silicon: 245 247 255;
+    --color-electric: 0 144 255;
+    --color-quantum: 123 92 214;
+    --color-circuit: 255 149 0;
+  }
+
+  html {
+    @apply scroll-smooth;
+    background-color: theme('colors.silicon.DEFAULT');
+  }
+
+  body {
+    @apply font-inter text-photon bg-silicon text-base antialiased;
+    overflow-x: hidden;
+    background-image: linear-gradient(to bottom right, rgba(255, 255, 255, 0.8), rgba(245, 247, 255, 0.9));
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-orbitron;
+  }
+
+  h5, h6 {
+    @apply font-space;
+  }
+
+  code, pre {
+    @apply font-jetbrains;
+  }
+}
+
+@layer components {
+  .neural-card {
+    @apply bg-white/70 backdrop-blur-md border border-electric/10 rounded-xl shadow-lg 
+           hover:shadow-neon transition-all duration-300 hover:bg-white/90;
+  }
+
+  .quantum-button {
+    @apply px-6 py-3 bg-quantum text-white hover:bg-quantum-light rounded-lg font-medium 
+           transition-all duration-300 hover:shadow-neon-purple transform hover:-translate-y-1
+           hover:ring-2 hover:ring-quantum-light/50;
+  }
+
+  .circuit-link {
+    @apply text-circuit hover:text-circuit-light transition-colors duration-300 
+           relative after:content-[''] after:absolute after:bottom-0 after:left-0 
+           after:w-0 after:h-0.5 after:bg-circuit hover:after:w-full 
+           after:transition-all after:duration-300 font-medium;
+  }
+
+  .tech-badge {
+    @apply px-4 py-2 bg-white/80 rounded-full text-sm font-medium text-electric 
+           border border-electric/20 hover:border-electric/50 transition-all duration-300
+           hover:bg-electric/10 hover:text-electric-dark shadow-sm hover:shadow-md;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-electric via-quantum to-circuit;
+  }
+
+  .bg-neural-grid {
+    @apply bg-grid-pattern bg-[length:50px_50px];
+  }
+
+  .glassmorphism {
+    @apply bg-silicon-light/30 backdrop-blur-md border border-photon/10;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-silicon-light;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-quantum rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-quantum-light;
+}
+
+/* Animation classes */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-glitch {
+  animation: glitch 1s linear infinite;
+}
+
+.animate-data-flow {
+  animation: dataFlow 2s linear infinite;
+}
+
+@keyframes moveGrid {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(40px, 40px);
+  }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

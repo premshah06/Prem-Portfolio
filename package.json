@@ -1,0 +1,75 @@
+{
+  "name": "prem-portfolio",
+  "version": "2.0.0",
+  "description": "Prem Shah's Professional Portfolio - Data Analytics Graduate Student & Developer",
+  "private": true,
+  "dependencies": {
+    "@react-three/drei": "^9.92.7",
+    "@react-three/fiber": "^8.15.12",
+    "@react-three/postprocessing": "^2.15.11",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "framer-motion": "^10.16.16",
+    "gsap": "^3.12.4",
+    "lucide-react": "^0.544.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
+    "styled-components": "^6.1.6",
+    "tailwindcss": "^3.4.0",
+    "three": "^0.160.0",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "lint": "eslint src/**/*.{js,jsx}",
+    "lint:fix": "eslint src/**/*.{js,jsx} --fix",
+    "format": "prettier --write src/**/*.{js,jsx,css,md}",
+    "analyze": "npm run build && npx bundle-analyzer build/static/js/*.js"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "eslint": "^8.20.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "prettier": "^2.7.1"
+  },
+  "keywords": [
+    "portfolio",
+    "react",
+    "data-analytics",
+    "developer",
+    "machine-learning",
+    "web-development"
+  ],
+  "author": "Prem Shah",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/premshah06/prem-portfolio"
+  },
+  "homepage": "https://premshah.dev"
+}
