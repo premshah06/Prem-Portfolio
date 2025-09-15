@@ -228,7 +228,7 @@ const Experience = () => {
                     <span className="text-electric text-2xl">🎓</span>
                   </div>
                   <div>
-                    <h4 className="font-bold text-electric">Master's in Applied Data Science</h4>
+                    <h4 className="font-bold text-electric">Master's in Applied Data Intelligence</h4>
                     <p className="text-quantum">San Jose State University</p>
                     <p className="text-chip text-sm">August, 2024 - May, 2026</p>
                   </div>
