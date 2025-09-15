@@ -41,14 +41,14 @@ const Home = () => {
       </div>
       
       <div className="w-full h-full flex flex-col lg:flex-row items-stretch relative z-10">
-        {/* Left Section - Full width on mobile, 60% on desktop */}
+        {/* Left Section - Full width on mobile, 55% on desktop */}
         <motion.div 
-          className="w-full lg:w-[60%] min-h-[60vh] lg:h-full flex items-center justify-center p-4 sm:p-6 lg:p-8"
+          className="w-full lg:w-[60%] xl:w-[55%] min-h-[60vh] lg:h-full flex items-center justify-center p-3 sm:p-4 lg:p-6 mt-16 lg:mt-0"
           initial="initial"
           animate="animate"
           variants={fadeIn}
         >
-          <div className="w-full max-w-3xl neural-card p-6 sm:p-8 lg:p-10 relative">
+          <div className="w-full max-w-2xl neural-card p-4 sm:p-5 lg:p-6 relative">
             {/* Decorative Corner Elements */}
             <div className="absolute top-0 left-0 w-16 h-16 sm:w-20 sm:h-20 border-t-2 border-l-2 border-electric/20 rounded-tl-2xl" />
             <div className="absolute bottom-0 right-0 w-16 h-16 sm:w-20 sm:h-20 border-b-2 border-r-2 border-quantum/20 rounded-br-2xl" />
@@ -65,30 +65,30 @@ const Home = () => {
             </motion.div>
 
             {/* Main Title */}
-            <motion.div className="space-y-4 lg:space-y-6 my-8 lg:my-12" variants={slideIn}>
-              <p className="text-base lg:text-lg font-medium text-electric tracking-wide">
+            <motion.div className="space-y-3 lg:space-y-4 my-6 lg:my-8" variants={slideIn}>
+              <p className="text-sm sm:text-base font-medium text-electric tracking-wide">
                 Hello, I'm
               </p>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-gradient leading-tight">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient leading-tight">
                 Prem Shah
               </h1>
-              <h2 className="text-xl sm:text-2xl lg:text-2xl font-semibold bg-gradient-to-r from-quantum to-circuit bg-clip-text text-transparent tracking-wide">
+              <h2 className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-quantum to-circuit bg-clip-text text-transparent tracking-wide">
                 SWE Intern at KLA | ML Enthusiast
               </h2>
             </motion.div>
 
             {/* Bio */}
-            <motion.div className="space-y-8 lg:space-y-10 my-8 lg:my-13" variants={fadeIn}>
+            <motion.div className="space-y-4 lg:space-y-6 my-4 lg:my-6" variants={fadeIn}>
               <div className="relative">
                 <div className="absolute -inset-1 bg-gradient-to-r from-electric via-quantum to-circuit opacity-20 blur rounded-xl" />
-                <p className="relative text-base lg:text-lg text-photon leading-relaxed p-6 lg:p-8 neural-card">
+                <p className="relative text-sm sm:text-base lg:text-lg text-photon leading-relaxed p-4 sm:p-5 lg:p-6 neural-card">
                   Applied Data Intelligence Graduate Student at San Jose State University with a passion for AI/ML and 
                   full-stack development. I love building data-driven solutions that make a real impact.
                 </p>
               </div>
               
               {/* Skills Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 lg:gap-8 mt-10 lg:mt-12">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mt-6 lg:mt-8">
                 {[
                   {
                     title: "Data & AI",
@@ -128,28 +128,28 @@ const Home = () => {
                       />
 
                       {/* Content */}
-                      <div className="relative z-10 p-6 lg:p-8">
+                      <div className="relative z-10 p-3 sm:p-4 lg:p-5">
                         {/* Icon */}
-                        <div className={`w-12 h-12 lg:w-14 lg:h-14 neural-card rounded-xl bg-gradient-to-br ${skill.gradient} 
-                                       flex items-center justify-center mb-4 mx-auto transform group-hover:scale-110 
+                        <div className={`w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 neural-card rounded-xl bg-gradient-to-br ${skill.gradient} 
+                                       flex items-center justify-center mb-3 sm:mb-4 mx-auto transform group-hover:scale-110 
                                        group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
-                          <div className="w-6 h-6 lg:w-7 lg:h-7 text-white">
+                          <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white">
                             {skill.icon}
                           </div>
                         </div>
 
                         {/* Title */}
-                        <h3 className={`text-base lg:text-lg font-bold ${skill.textColor} text-center mb-4 
+                        <h3 className={`text-sm sm:text-base lg:text-lg font-bold ${skill.textColor} text-center mb-3 sm:mb-4 
                                       tracking-wide group-hover:scale-105 transition-transform duration-300`}>
                           {skill.title}
                         </h3>
 
                         {/* Skills List */}
-                        <div className="space-y-3 flex flex-col items-start pl-6">
+                        <div className="space-y-2 sm:space-y-3 flex flex-col items-start pl-4 sm:pl-5">
                           {skill.skills.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-3 w-full">
-                              <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${skill.gradient} flex-shrink-0`} />
-                              <span className="text-sm lg:text-base text-chip group-hover:text-photon transition-colors duration-300">
+                            <div key={idx} className="flex items-center gap-2 sm:gap-3 w-full">
+                              <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r ${skill.gradient} flex-shrink-0`} />
+                              <span className="text-xs sm:text-sm lg:text-base text-chip group-hover:text-photon transition-colors duration-300">
                                 {item}
                               </span>
                             </div>
@@ -163,7 +163,7 @@ const Home = () => {
             </motion.div>
 
             {/* CTA Buttons */}
-            <motion.div className="flex flex-col sm:flex-row gap-4 sm:gap-6 mt-10 lg:mt-12" variants={fadeIn}>
+            <motion.div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 lg:mt-8" variants={fadeIn}>
               <a 
                 href="#work" 
                 className="quantum-button inline-flex items-center justify-center gap-2"
@@ -182,9 +182,9 @@ const Home = () => {
           </div>
         </motion.div>
 
-        {/* Right Section - Full width on mobile, 40% on desktop */}
+        {/* Right Section - Full width on mobile, 45% on desktop */}
         <motion.div 
-          className="w-full lg:w-[40%] min-h-[40vh] lg:h-full flex flex-col items-center justify-center p-4 sm:p-6 lg:p-8 border-t lg:border-t-0 lg:border-l border-electric/10"
+          className="w-full lg:w-[40%] xl:w-[45%] min-h-[40vh] lg:h-full flex flex-col items-center justify-center p-3 sm:p-4 lg:p-6 border-t lg:border-t-0 lg:border-l border-electric/10 mt-8 lg:mt-0"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6 }}
@@ -198,11 +198,50 @@ const Home = () => {
               <div className="absolute inset-8 rounded-full border border-circuit/20 animate-spin" style={{ animationDuration: '20s' }} />
               
               {/* Center Content */}
-              <div className="absolute inset-16 neural-card rounded-full flex items-center justify-center">
-                <div className="text-center space-y-2">
-                  <div className="text-4xl lg:text-6xl">🚀</div>
-                  <div className="text-sm lg:text-base font-semibold text-electric">Building the Future</div>
-                </div>
+              <div className="absolute inset-16 neural-card rounded-full flex items-center justify-center overflow-hidden">
+                <div 
+                  className="absolute inset-0 bg-gradient-to-r from-electric via-quantum to-circuit opacity-20"
+                  style={{
+                    animation: 'gradient-rotate 8s linear infinite',
+                    backgroundSize: '200% 200%'
+                  }}
+                />
+                <motion.div 
+                  className="text-center space-y-3 relative z-10"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    rotate: [0, 5, -5, 0]
+                  }}
+                  transition={{
+                    duration: 5,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                >
+                  <motion.div 
+                    className="text-4xl lg:text-6xl"
+                    animate={{ 
+                      y: [-2, 2, -2],
+                      rotate: [-5, 5, -5]
+                    }}
+                    transition={{
+                      duration: 2,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    🚀
+                  </motion.div>
+                  <motion.div 
+                    className="text-sm lg:text-base font-bold bg-gradient-to-r from-electric via-quantum to-circuit bg-clip-text text-transparent"
+                    style={{
+                      backgroundSize: '200% 200%',
+                      animation: 'gradient-text 3s linear infinite'
+                    }}
+                  >
+                    Building the Future
+                  </motion.div>
+                </motion.div>
               </div>
             </div>
           </div>

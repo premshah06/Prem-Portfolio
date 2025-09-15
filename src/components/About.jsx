@@ -6,7 +6,7 @@ const experiencesData = [
   {
     title: " Software Engineering Intern",
     company: "KLA",
-    period: "August 2024 – Present",
+    period: "August 2025 – Present",
     location: "Milpitas, CA",
     description:
       "Working to enhance more features in the website for better user experience and performance optimization",
@@ -16,7 +16,7 @@ const experiencesData = [
   {
     title: " Software Engineering Intern",
     company: "KLA",
-    period: "May 2024 – August 2024",
+    period: "May 2025 – August 2025",
     location: "Austin, Texas",
     description:
       "Developing a React-based analytics platform for semiconductor etch process optimization, enabling engineers to visualize Design of Experiments (DoE) trials and perform rapid comparative analysis across fabrication runs. By integrating recipe metadata with CD-SEM imaging data, the tool automatically detected process variations and anomalies, significantly improving fabrication decision accuracy. The solution featured scalable NoSQL data models optimized for storing and querying custom semiconductor metrics, accelerating insight generation and supporting high-throughput chip design workflows.",
