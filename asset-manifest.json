@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/Prem-Portfolio/static/css/main.dc04d17d.css",
+    "main.js": "/Prem-Portfolio/static/js/main.58b06c68.js",
+    "static/js/331.f4b1e626.chunk.js": "/Prem-Portfolio/static/js/331.f4b1e626.chunk.js",
+    "static/js/0.da8fcfc3.chunk.js": "/Prem-Portfolio/static/js/0.da8fcfc3.chunk.js",
+    "static/js/710.0f4a962b.chunk.js": "/Prem-Portfolio/static/js/710.0f4a962b.chunk.js",
+    "static/js/951.8cb51e20.chunk.js": "/Prem-Portfolio/static/js/951.8cb51e20.chunk.js",
+    "static/media/cert1.jpg": "/Prem-Portfolio/static/media/cert1.87238aad8bb23aa3d5a3.jpg",
+    "static/media/cert2.jpg": "/Prem-Portfolio/static/media/cert2.51719204e176f92dd745.jpg",
+    "static/media/image (16).png": "/Prem-Portfolio/static/media/image (16).1cc149103e919b33e55c.png",
+    "static/media/cert.jpg": "/Prem-Portfolio/static/media/cert.774a173bbecb45cbc8e0.jpg",
+    "static/media/heart.png": "/Prem-Portfolio/static/media/heart.532d7164c6c38908fa87.png",
+    "static/media/Dashboard.png": "/Prem-Portfolio/static/media/Dashboard.00c02468a1f0eea7ac36.png",
+    "static/media/11.jpeg": "/Prem-Portfolio/static/media/11.88d27092b0fd10b340f2.jpeg",
+    "static/media/13.png": "/Prem-Portfolio/static/media/13.f77c2b5d173e98f2b0e9.png",
+    "static/media/seasonal.jpg": "/Prem-Portfolio/static/media/seasonal.7018217b5711266a83ff.jpg",
+    "static/media/aifit.png": "/Prem-Portfolio/static/media/aifit.7f1120c6525f48947d45.png",
+    "static/media/texthidder.png": "/Prem-Portfolio/static/media/texthidder.352efe92cdd31da63954.png",
+    "static/media/job.png": "/Prem-Portfolio/static/media/job.9f6e0fb0d212531843f1.png",
+    "index.html": "/Prem-Portfolio/index.html",
+    "main.dc04d17d.css.map": "/Prem-Portfolio/static/css/main.dc04d17d.css.map",
+    "main.58b06c68.js.map": "/Prem-Portfolio/static/js/main.58b06c68.js.map",
+    "331.f4b1e626.chunk.js.map": "/Prem-Portfolio/static/js/331.f4b1e626.chunk.js.map",
+    "0.da8fcfc3.chunk.js.map": "/Prem-Portfolio/static/js/0.da8fcfc3.chunk.js.map",
+    "710.0f4a962b.chunk.js.map": "/Prem-Portfolio/static/js/710.0f4a962b.chunk.js.map",
+    "951.8cb51e20.chunk.js.map": "/Prem-Portfolio/static/js/951.8cb51e20.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.dc04d17d.css",
+    "static/js/main.58b06c68.js"
+  ]
+}
