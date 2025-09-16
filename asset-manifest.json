@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/Prem-Portfolio/static/css/main.82d18be6.css",
-    "main.js": "/Prem-Portfolio/static/js/main.93f04657.js",
-    "static/js/331.f4b1e626.chunk.js": "/Prem-Portfolio/static/js/331.f4b1e626.chunk.js",
-    "static/js/0.da8fcfc3.chunk.js": "/Prem-Portfolio/static/js/0.da8fcfc3.chunk.js",
-    "static/js/710.3605bdb0.chunk.js": "/Prem-Portfolio/static/js/710.3605bdb0.chunk.js",
+    "main.css": "/Prem-Portfolio/static/css/main.8f39d2c2.css",
+    "main.js": "/Prem-Portfolio/static/js/main.ae369d0f.js",
+    "static/js/331.d80e39f4.chunk.js": "/Prem-Portfolio/static/js/331.d80e39f4.chunk.js",
+    "static/js/0.ed633d88.chunk.js": "/Prem-Portfolio/static/js/0.ed633d88.chunk.js",
+    "static/js/710.4a0a0edf.chunk.js": "/Prem-Portfolio/static/js/710.4a0a0edf.chunk.js",
     "static/js/951.8cb51e20.chunk.js": "/Prem-Portfolio/static/js/951.8cb51e20.chunk.js",
     "static/media/cert1.jpg": "/Prem-Portfolio/static/media/cert1.87238aad8bb23aa3d5a3.jpg",
     "static/media/cert2.jpg": "/Prem-Portfolio/static/media/cert2.51719204e176f92dd745.jpg",
@@ -19,15 +19,15 @@
     "static/media/texthidder.png": "/Prem-Portfolio/static/media/texthidder.352efe92cdd31da63954.png",
     "static/media/job.png": "/Prem-Portfolio/static/media/job.9f6e0fb0d212531843f1.png",
     "index.html": "/Prem-Portfolio/index.html",
-    "main.82d18be6.css.map": "/Prem-Portfolio/static/css/main.82d18be6.css.map",
-    "main.93f04657.js.map": "/Prem-Portfolio/static/js/main.93f04657.js.map",
-    "331.f4b1e626.chunk.js.map": "/Prem-Portfolio/static/js/331.f4b1e626.chunk.js.map",
-    "0.da8fcfc3.chunk.js.map": "/Prem-Portfolio/static/js/0.da8fcfc3.chunk.js.map",
-    "710.3605bdb0.chunk.js.map": "/Prem-Portfolio/static/js/710.3605bdb0.chunk.js.map",
+    "main.8f39d2c2.css.map": "/Prem-Portfolio/static/css/main.8f39d2c2.css.map",
+    "main.ae369d0f.js.map": "/Prem-Portfolio/static/js/main.ae369d0f.js.map",
+    "331.d80e39f4.chunk.js.map": "/Prem-Portfolio/static/js/331.d80e39f4.chunk.js.map",
+    "0.ed633d88.chunk.js.map": "/Prem-Portfolio/static/js/0.ed633d88.chunk.js.map",
+    "710.4a0a0edf.chunk.js.map": "/Prem-Portfolio/static/js/710.4a0a0edf.chunk.js.map",
     "951.8cb51e20.chunk.js.map": "/Prem-Portfolio/static/js/951.8cb51e20.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.82d18be6.css",
-    "static/js/main.93f04657.js"
+    "static/css/main.8f39d2c2.css",
+    "static/js/main.ae369d0f.js"
   ]
 }
