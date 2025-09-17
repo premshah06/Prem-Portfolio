@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/Prem-Portfolio/static/css/main.e85760c2.css",
-    "main.js": "/Prem-Portfolio/static/js/main.a03badfb.js",
+    "main.css": "/Prem-Portfolio/static/css/main.e16774a8.css",
+    "main.js": "/Prem-Portfolio/static/js/main.60427309.js",
     "static/js/331.24016cbd.chunk.js": "/Prem-Portfolio/static/js/331.24016cbd.chunk.js",
     "static/js/0.2fc6284b.chunk.js": "/Prem-Portfolio/static/js/0.2fc6284b.chunk.js",
     "static/js/710.d474b98d.chunk.js": "/Prem-Portfolio/static/js/710.d474b98d.chunk.js",
@@ -19,15 +19,15 @@
     "static/media/texthidder.png": "/Prem-Portfolio/static/media/texthidder.352efe92cdd31da63954.png",
     "static/media/job.png": "/Prem-Portfolio/static/media/job.9f6e0fb0d212531843f1.png",
     "index.html": "/Prem-Portfolio/index.html",
-    "main.e85760c2.css.map": "/Prem-Portfolio/static/css/main.e85760c2.css.map",
-    "main.a03badfb.js.map": "/Prem-Portfolio/static/js/main.a03badfb.js.map",
+    "main.e16774a8.css.map": "/Prem-Portfolio/static/css/main.e16774a8.css.map",
+    "main.60427309.js.map": "/Prem-Portfolio/static/js/main.60427309.js.map",
     "331.24016cbd.chunk.js.map": "/Prem-Portfolio/static/js/331.24016cbd.chunk.js.map",
     "0.2fc6284b.chunk.js.map": "/Prem-Portfolio/static/js/0.2fc6284b.chunk.js.map",
     "710.d474b98d.chunk.js.map": "/Prem-Portfolio/static/js/710.d474b98d.chunk.js.map",
     "951.8cb51e20.chunk.js.map": "/Prem-Portfolio/static/js/951.8cb51e20.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.e85760c2.css",
-    "static/js/main.a03badfb.js"
+    "static/css/main.e16774a8.css",
+    "static/js/main.60427309.js"
   ]
 }
