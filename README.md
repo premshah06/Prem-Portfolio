@@ -19,38 +19,6 @@ A modern, responsive portfolio website showcasing my skills, experience, and pro
 - **Deployment**: Ready for Vercel, Netlify, or GitHub Pages
 - **Build Tool**: Create React App
 
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn package manager
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/premshah06/prem-portfolio.git
-   cd prem-portfolio
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
-
-3. **Start the development server**
-   ```bash
-   npm start
-   # or
-   yarn start
-   ```
-
-4. **Open your browser**
-   Navigate to [http://localhost:3000](http://localhost:3000)
-
 ## 📁 Project Structure
 
 ```
@@ -98,14 +66,6 @@ colors: {
 }
 ```
 
-### Content Updates
-
-1. **Personal Information**: Update details in component files
-2. **Projects**: Modify `src/data/data.jsx`
-3. **Skills**: Update skills array in `Skills.jsx`
-4. **Experience**: Edit experience data in `About.jsx`
-5. **Certificates**: Update certificate information in `Contact.jsx`
-
 ### Styling
 
 - **Tailwind CSS**: Utility-first CSS framework
@@ -128,32 +88,6 @@ npm run build
 # or
 yarn build
 ```
-
-### Deploy Options
-
-1. **Vercel** (Recommended)
-   ```bash
-   npm install -g vercel
-   vercel
-   ```
-
-2. **Netlify**
-   - Drag and drop the `build` folder
-   - Or connect your GitHub repository
-
-3. **GitHub Pages**
-   ```bash
-   npm run deploy
-   ```
-
-## 🔧 Available Scripts
-
-- `npm start` - Start development server
-- `npm run build` - Build for production
-- `npm test` - Run tests
-- `npm run lint` - Check code quality
-- `npm run lint:fix` - Fix linting issues
-- `npm run format` - Format code with Prettier
 
 ## 📊 Performance
 
@@ -194,21 +128,9 @@ yarn build
 - Interactive certificate viewer
 - Achievement statistics
 
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 
-- **Email**: prem.shah@sjsu.edu
 - **LinkedIn**: [Prem Shah](https://www.linkedin.com/in/prem-shah-9a5076219/)
 - **GitHub**: [premshah06](https://github.com/premshah06)
 
