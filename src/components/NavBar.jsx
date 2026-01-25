@@ -1,10 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaHome, FaBriefcase, FaCode, FaProjectDiagram, FaCertificate, FaLinkedin, FaGithub, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
+import SITE from '../config/site';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const name = SITE.name;
+  const email = SITE.email;
+  const mailto = email ? `mailto:${email}` : '';
+  const linkedinUrl = SITE.linkedinUrl;
+  const githubUrl = SITE.githubUrl;
   
   useEffect(() => {
     const handleScroll = () => {
@@ -27,22 +33,28 @@ const Navbar = () => {
   ];
 
   const socialLinks = [
-    {
-      href: 'https://www.linkedin.com/in/prem-shah-9a5076219/',
-      label: 'LinkedIn',
-      icon: <FaLinkedin className="w-5 h-5" />
-    },
-    {
-      href: 'https://github.com/premshah06',
-      label: 'GitHub',
-      icon: <FaGithub className="w-5 h-5" />
-    },
-    {
-      href: 'mailto:prem.shah@sjsu.edu',
-      label: 'Email',
-      icon: <FaEnvelope className="w-5 h-5" />
-    },
-  ];
+    linkedinUrl
+      ? {
+          href: linkedinUrl,
+          label: 'LinkedIn',
+          icon: <FaLinkedin className="w-5 h-5" />
+        }
+      : null,
+    githubUrl
+      ? {
+          href: githubUrl,
+          label: 'GitHub',
+          icon: <FaGithub className="w-5 h-5" />
+        }
+      : null,
+    mailto
+      ? {
+          href: mailto,
+          label: 'Email',
+          icon: <FaEnvelope className="w-5 h-5" />
+        }
+      : null,
+  ].filter(Boolean);
 
   return (
     <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
@@ -59,7 +71,7 @@ const Navbar = () => {
             <div className="w-8 h-8 bg-gradient-to-r from-electric to-quantum rounded-lg flex items-center justify-center">
               <span className="text-white font-bold">PS</span>
             </div>
-            <span className="text-lg font-semibold text-photon">Prem Shah</span>
+            <span className="text-lg font-semibold text-photon">{name}</span>
           </motion.div>
 
           {/* Desktop Menu */}

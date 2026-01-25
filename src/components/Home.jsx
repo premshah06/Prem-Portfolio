@@ -1,8 +1,16 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, FileText, Database, Code, Cpu, ArrowRight } from 'lucide-react';
+import SITE from '../config/site';
 
 const Home = () => {
+  const name = SITE.name;
+  const email = SITE.email;
+  const mailto = email ? `mailto:${email}` : '';
+  const githubUrl = SITE.githubUrl;
+  const linkedinUrl = SITE.linkedinUrl;
+  const resumeUrl = SITE.resumeUrl || '/resume.pdf';
+
   const fadeIn = {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
@@ -70,7 +78,7 @@ const Home = () => {
                 Hello, I'm
               </p>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient leading-tight">
-                Prem Shah
+                {name}
               </h1>
               <h2 className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-quantum to-circuit bg-clip-text text-transparent tracking-wide">
                 Prev - SWE Intern at KLA | ML Enthusiast
@@ -171,13 +179,15 @@ const Home = () => {
                 View My Work
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
               </a>
-              <a 
-                href="mailto:prem.shah@sjsu.edu" 
-                className="circuit-link inline-flex items-center justify-center gap-2"
-              >
-                <Mail className="w-4 h-4" />
-                Contact Me
-              </a>
+              {mailto ? (
+                <a 
+                  href={mailto} 
+                  className="circuit-link inline-flex items-center justify-center gap-2"
+                >
+                  <Mail className="w-4 h-4" />
+                  Contact Me
+                </a>
+              ) : null}
             </motion.div>
           </div>
         </motion.div>
@@ -248,36 +258,42 @@ const Home = () => {
 
           {/* Social Links */}
           <div className="flex items-center gap-4 lg:gap-6 mt-8">
-            <motion.a 
-              href="https://github.com/premshah06" 
-              className="tech-badge p-3 lg:p-4"
-              whileHover={{ scale: 1.1, y: -5 }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-electric transition-colors duration-300" />
-            </motion.a>
+            {githubUrl ? (
+              <motion.a 
+                href={githubUrl} 
+                className="tech-badge p-3 lg:p-4"
+                whileHover={{ scale: 1.1, y: -5 }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Github className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-electric transition-colors duration-300" />
+              </motion.a>
+            ) : null}
+            
+            {linkedinUrl ? (
+              <motion.a 
+                href={linkedinUrl} 
+                className="tech-badge p-3 lg:p-4"
+                whileHover={{ scale: 1.1, y: -5 }}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Linkedin className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-quantum transition-colors duration-300" />
+              </motion.a>
+            ) : null}
+            
+            {mailto ? (
+              <motion.a 
+                href={mailto} 
+                className="tech-badge p-3 lg:p-4"
+                whileHover={{ scale: 1.1, y: -5 }}
+              >
+                <Mail className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-circuit transition-colors duration-300" />
+              </motion.a>
+            ) : null}
             
             <motion.a 
-              href="https://www.linkedin.com/in/prem-shah-9a5076219/" 
-              className="tech-badge p-3 lg:p-4"
-              whileHover={{ scale: 1.1, y: -5 }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Linkedin className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-quantum transition-colors duration-300" />
-            </motion.a>
-            
-            <motion.a 
-              href="mailto:prem.shah@sjsu.edu" 
-              className="tech-badge p-3 lg:p-4"
-              whileHover={{ scale: 1.1, y: -5 }}
-            >
-              <Mail className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-circuit transition-colors duration-300" />
-            </motion.a>
-            
-            <motion.a 
-              href="/resume.pdf" 
+              href={resumeUrl} 
               className="tech-badge p-3 lg:p-4"
               whileHover={{ scale: 1.1, y: -5 }}
               target="_blank"

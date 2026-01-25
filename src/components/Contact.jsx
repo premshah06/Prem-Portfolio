@@ -4,6 +4,7 @@ import { FaTrophy, FaMedal, FaBook, FaBullseye, FaDownload, FaTimes, FaEye, FaEn
 import cert1 from '../assests/cert1.jpg';
 import cert2 from '../assests/cert2.jpg';
 import cert3 from '../assests/cert.jpg';
+import SITE from '../config/site';
 
 const achievementStats = {
   secondRank: {
@@ -64,6 +65,9 @@ const certificatesData = [
 
 const Certificates = () => {
   const [selectedCert, setSelectedCert] = useState(null);
+  const email = SITE.email;
+  const mailto = email ? `mailto:${email}` : '';
+  const linkedinUrl = SITE.linkedinUrl;
 
   const openModal = (cert) => {
     setSelectedCert(cert);
@@ -191,19 +195,23 @@ const Certificates = () => {
               I'm always open to discussing new opportunities, collaborations, or just having a chat about technology and data analytics.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a href="mailto:prem.shah@sjsu.edu" className="quantum-button flex items-center justify-center gap-2">
-                <FaEnvelope className="w-5 h-5" />
-                Send Email
-              </a>
-              <a 
-                href="https://www.linkedin.com/in/prem-shah-9a5076219/" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="tech-badge flex items-center justify-center gap-2"
-              >
-                <FaLinkedin className="w-5 h-5" />
-                Connect on LinkedIn
-              </a>
+              {mailto ? (
+                <a href={mailto} className="quantum-button flex items-center justify-center gap-2">
+                  <FaEnvelope className="w-5 h-5" />
+                  Send Email
+                </a>
+              ) : null}
+              {linkedinUrl ? (
+                <a 
+                  href={linkedinUrl} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="tech-badge flex items-center justify-center gap-2"
+                >
+                  <FaLinkedin className="w-5 h-5" />
+                  Connect on LinkedIn
+                </a>
+              ) : null}
             </div>
           </div>
         </div>

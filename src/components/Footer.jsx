@@ -1,25 +1,43 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaGraduationCap, FaArrowUp } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaGraduationCap, FaArrowUp, FaPhone } from 'react-icons/fa';
+import SITE from '../config/site';
 
 const Footer = () => {
+  const name = SITE.name;
+  const email = SITE.email;
+  const mailto = email ? `mailto:${email}` : '';
+  const phone = SITE.phone;
+  const tel = phone ? `tel:${phone}` : '';
+  const linkedinUrl = SITE.linkedinUrl;
+  const githubUrl = SITE.githubUrl;
+  const role = SITE.role;
+  const location = SITE.location;
+  const school = SITE.school;
+
   const socialLinks = [
-    { 
-      href: 'https://www.linkedin.com/in/prem-shah-9a5076219/', 
-      label: 'LinkedIn',
-      icon: <FaLinkedin className="w-5 h-5" />
-    },
-    { 
-      href: 'https://github.com/premshah06', 
-      label: 'GitHub',
-      icon: <FaGithub className="w-5 h-5" />
-    },
-    { 
-      href: 'mailto:prem.shah@sjsu.edu', 
-      label: 'Email',
-      icon: <FaEnvelope className="w-5 h-5" />
-    },
-  ];
+    linkedinUrl
+      ? { 
+          href: linkedinUrl, 
+          label: 'LinkedIn',
+          icon: <FaLinkedin className="w-5 h-5" />
+        }
+      : null,
+    githubUrl
+      ? { 
+          href: githubUrl, 
+          label: 'GitHub',
+          icon: <FaGithub className="w-5 h-5" />
+        }
+      : null,
+    mailto
+      ? { 
+          href: mailto, 
+          label: 'Email',
+          icon: <FaEnvelope className="w-5 h-5" />
+        }
+      : null,
+  ].filter(Boolean);
 
   const quickLinks = [
     { name: 'Home', href: 'home' },
@@ -44,8 +62,8 @@ const Footer = () => {
                 <span className="text-white font-bold text-xl">PS</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-photon">Prem Shah</h3>
-                <p className="text-sm text-chip">Applied Data Intelligence Graduate Student</p>
+                <h3 className="text-lg font-bold text-photon">{name}</h3>
+                <p className="text-sm text-chip">{role}</p>
               </div>
             </div>
             
@@ -93,21 +111,36 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold text-photon mb-4">Get In Touch</h4>
             <div className="space-y-4">
-              <a 
-                href="mailto:prem.shah@sjsu.edu"
-                className="flex items-center gap-3 text-chip hover:text-electric transition-colors duration-300"
-              >
-                <FaEnvelope className="w-5 h-5" />
-                <span>prem.shah@sjsu.edu</span>
-              </a>
-              <div className="flex items-center gap-3 text-chip">
-                <FaMapMarkerAlt className="w-5 h-5 text-circuit" />
-                <span>San Jose, CA</span>
-              </div>
-              <div className="flex items-center gap-3 text-chip">
-                <FaGraduationCap className="w-5 h-5 text-quantum" />
-                <span>SJSU Applied Data Intelligence</span>
-              </div>
+              {mailto ? (
+                <a 
+                  href={mailto}
+                  className="flex items-center gap-3 text-chip hover:text-electric transition-colors duration-300"
+                >
+                  <FaEnvelope className="w-5 h-5" />
+                  <span>{email}</span>
+                </a>
+              ) : null}
+              {tel ? (
+                <a 
+                  href={tel}
+                  className="flex items-center gap-3 text-chip hover:text-electric transition-colors duration-300"
+                >
+                  <FaPhone className="w-5 h-5" />
+                  <span>{phone}</span>
+                </a>
+              ) : null}
+              {location ? (
+                <div className="flex items-center gap-3 text-chip">
+                  <FaMapMarkerAlt className="w-5 h-5 text-circuit" />
+                  <span>{location}</span>
+                </div>
+              ) : null}
+              {school ? (
+                <div className="flex items-center gap-3 text-chip">
+                  <FaGraduationCap className="w-5 h-5 text-quantum" />
+                  <span>{school}</span>
+                </div>
+              ) : null}
             </div>
           </div>
 
@@ -134,7 +167,7 @@ const Footer = () => {
         <div className="border-t border-electric/10 pt-8">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="text-center sm:text-left space-y-2 sm:space-y-0">
-              <span className="text-chip text-sm block sm:inline">© {new Date().getFullYear()} Prem Shah. All Rights Reserved.</span>
+              <span className="text-chip text-sm block sm:inline">© {new Date().getFullYear()} {name}. All Rights Reserved.</span>
               <span className="text-chip text-sm block sm:inline sm:ml-4">Made with ❤️ in San Jose</span>
             </div>
             

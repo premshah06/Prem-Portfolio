@@ -2,10 +2,14 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FaGithub, FaExternalLinkAlt, FaEye, FaStar, FaCode, FaRocket } from 'react-icons/fa';
 import { data } from '../data/data';
+import SITE from '../config/site';
 
 const Work = () => {
   const [activeFilter, setActiveFilter] = useState('all');
   const projects = data;
+  const email = SITE.email;
+  const mailto = email ? `mailto:${email}` : '';
+  const githubUrl = SITE.githubUrl;
 
   // Extract unique categories from projects
   const categories = ['all', ...new Set(projects.flatMap(project => project.skills))];
@@ -194,23 +198,27 @@ const Work = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="mailto:prem.shah@sjsu.edu"
-                className="quantum-button inline-flex items-center gap-2"
-              >
-                <FaRocket size={16} />
-                Get In Touch
-              </a>
+              {mailto ? (
+                <a
+                  href={mailto}
+                  className="quantum-button inline-flex items-center gap-2"
+                >
+                  <FaRocket size={16} />
+                  Get In Touch
+                </a>
+              ) : null}
               
-              <a
-                href="https://github.com/premshah06"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="circuit-link inline-flex items-center gap-2"
-              >
-                <FaGithub size={16} />
-                View GitHub
-              </a>
+              {githubUrl ? (
+                <a
+                  href={githubUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="circuit-link inline-flex items-center gap-2"
+                >
+                  <FaGithub size={16} />
+                  View GitHub
+                </a>
+              ) : null}
             </div>
           </div>
         </motion.div>
