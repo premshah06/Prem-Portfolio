@@ -25,6 +25,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "deploy": "gh-pages -d build",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
@@ -55,6 +56,7 @@
     "eslint": "^8.20.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "gh-pages": "^6.3.0",
     "prettier": "^2.7.1"
   },
   "keywords": [
@@ -71,5 +73,5 @@
     "type": "git",
     "url": "https://github.com/premshah06/prem-portfolio"
   },
-  "homepage": "https://premshah.dev"
+  "homepage": "https://premshah06.github.io/Prem-Portfolio"
 }
