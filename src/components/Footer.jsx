@@ -1,87 +1,69 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaGraduationCap, FaArrowUp, FaPhone } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaGraduationCap, FaArrowUp } from 'react-icons/fa';
 import SITE from '../config/site';
 
 const Footer = () => {
-  const name = SITE.name;
-  const email = SITE.email;
-  const mailto = email ? `mailto:${email}` : '';
-  const phone = SITE.phone;
-  const tel = phone ? `tel:${phone}` : '';
+  const name       = SITE.name       || 'Prem Shah';
+  const email      = SITE.email;
+  const mailto     = email ? `mailto:${email}` : '';
   const linkedinUrl = SITE.linkedinUrl;
-  const githubUrl = SITE.githubUrl;
-  const role = SITE.role;
-  const location = SITE.location;
-  const school = SITE.school;
+  const githubUrl  = SITE.githubUrl;
+  const role       = SITE.role;
+  const location   = SITE.location;
+  const school     = SITE.school;
 
   const socialLinks = [
-    linkedinUrl
-      ? { 
-          href: linkedinUrl, 
-          label: 'LinkedIn',
-          icon: <FaLinkedin className="w-5 h-5" />
-        }
-      : null,
-    githubUrl
-      ? { 
-          href: githubUrl, 
-          label: 'GitHub',
-          icon: <FaGithub className="w-5 h-5" />
-        }
-      : null,
-    mailto
-      ? { 
-          href: mailto, 
-          label: 'Email',
-          icon: <FaEnvelope className="w-5 h-5" />
-        }
-      : null,
+    linkedinUrl ? { href: linkedinUrl, label: 'LinkedIn', icon: <FaLinkedin className="w-4 h-4" /> } : null,
+    githubUrl   ? { href: githubUrl,   label: 'GitHub',   icon: <FaGithub   className="w-4 h-4" /> } : null,
+    mailto      ? { href: mailto,      label: 'Email',    icon: <FaEnvelope className="w-4 h-4" /> } : null,
   ].filter(Boolean);
 
   const quickLinks = [
-    { name: 'Home', href: 'home' },
-    { name: 'Experience', href: 'experience' },
-    { name: 'Skills', href: 'skills' },
-    { name: 'Work', href: 'work' },
+    { name: 'Home',         href: 'home'         },
+    { name: 'Experience',   href: 'experience'   },
+    { name: 'Skills',       href: 'skills'       },
+    { name: 'Work',         href: 'work'         },
     { name: 'Certificates', href: 'certificates' },
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   return (
-    <footer className="bg-silicon relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Brand Section */}
-          <div className="space-y-6">
+    <footer style={{ background: 'rgba(246,243,238,0.92)', borderTop: '1px solid rgba(28,27,46,0.08)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+
+          {/* Brand */}
+          <div className="space-y-5">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 neural-card rounded-xl flex items-center justify-center bg-gradient-to-br from-electric to-quantum">
-                <span className="text-white font-bold text-xl">PS</span>
+              <div
+                className="w-10 h-10 rounded-xl flex items-center justify-center font-bold text-base"
+                style={{ background: 'linear-gradient(135deg, rgba(2,132,199,0.1), rgba(124,58,237,0.1))', border: '1px solid rgba(2,132,199,0.25)', color: '#0284c7' }}
+              >
+                PS
               </div>
               <div>
-                <h3 className="text-lg font-bold text-photon">{name}</h3>
-                <p className="text-sm text-chip">{role}</p>
+                <h3 className="font-fraunces font-semibold text-photon text-base">{name}</h3>
+                <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.42)' }}>{role}</p>
               </div>
             </div>
-            
-            <p className="text-chip text-sm leading-relaxed">
-              A passionate developer and data analyst who loves crafting creative solutions 
-              and deriving insights from complex datasets. Always eager to learn and contribute 
-              to innovative projects.
+
+            <p className="text-sm leading-relaxed" style={{ color: 'rgba(28,27,46,0.45)' }}>
+              Building data-driven systems at the intersection of applied ML and full-stack engineering.
             </p>
 
-            <div className="flex gap-4">
+            <div className="flex gap-2">
               {socialLinks.map((item, idx) => (
                 <motion.a
                   key={idx}
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="tech-badge"
+                  aria-label={item.label}
+                  className="p-2 rounded-lg transition-all duration-200"
+                  style={{ color: 'rgba(28,27,46,0.42)', border: '1px solid rgba(28,27,46,0.08)' }}
                   whileHover={{ scale: 1.1 }}
+                  onMouseEnter={e => { e.currentTarget.style.color = '#0284c7'; e.currentTarget.style.borderColor = 'rgba(2,132,199,0.3)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.42)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.08)'; }}
                 >
                   {item.icon}
                 </motion.a>
@@ -89,17 +71,22 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick links */}
           <div>
-            <h4 className="text-lg font-semibold text-photon mb-4">Quick Links</h4>
+            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.42)' }}>
+              Quick Links
+            </h4>
             <ul className="space-y-2">
               {quickLinks.map((link, idx) => (
                 <li key={idx}>
-                  <a 
+                  <a
                     href={`#${link.href}`}
-                    className="text-chip hover:text-electric transition-colors duration-300 flex items-center gap-2"
+                    className="flex items-center gap-2 text-sm transition-colors duration-200"
+                    style={{ color: 'rgba(28,27,46,0.45)' }}
+                    onMouseEnter={e => e.currentTarget.style.color = '#0284c7'}
+                    onMouseLeave={e => e.currentTarget.style.color = 'rgba(28,27,46,0.45)'}
                   >
-                    <span className="w-1.5 h-1.5 rounded-full bg-electric"></span>
+                    <span className="w-1 h-1 rounded-full" style={{ background: '#0284c7', opacity: 0.5 }}></span>
                     {link.name}
                   </a>
                 </li>
@@ -107,86 +94,85 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Contact Info */}
+          {/* Contact */}
           <div>
-            <h4 className="text-lg font-semibold text-photon mb-4">Get In Touch</h4>
-            <div className="space-y-4">
-              {mailto ? (
-                <a 
+            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.42)' }}>
+              Get In Touch
+            </h4>
+            <div className="space-y-3">
+              {mailto && (
+                <a
                   href={mailto}
-                  className="flex items-center gap-3 text-chip hover:text-electric transition-colors duration-300"
+                  className="flex items-center gap-3 text-sm transition-colors duration-200"
+                  style={{ color: 'rgba(28,27,46,0.55)' }}
+                  onMouseEnter={e => e.currentTarget.style.color = '#0284c7'}
+                  onMouseLeave={e => e.currentTarget.style.color = 'rgba(28,27,46,0.55)'}
                 >
-                  <FaEnvelope className="w-5 h-5" />
-                  <span>{email}</span>
+                  <FaEnvelope className="w-4 h-4 flex-shrink-0 text-electric" />
+                  <span className="truncate">{email}</span>
                 </a>
-              ) : null}
-              {tel ? (
-                <a 
-                  href={tel}
-                  className="flex items-center gap-3 text-chip hover:text-electric transition-colors duration-300"
-                >
-                  <FaPhone className="w-5 h-5" />
-                  <span>{phone}</span>
-                </a>
-              ) : null}
-              {location ? (
-                <div className="flex items-center gap-3 text-chip">
-                  <FaMapMarkerAlt className="w-5 h-5 text-circuit" />
+              )}
+              {location && (
+                <div className="flex items-center gap-3 text-sm" style={{ color: 'rgba(28,27,46,0.42)' }}>
+                  <FaMapMarkerAlt className="w-4 h-4 flex-shrink-0 text-circuit" />
                   <span>{location}</span>
                 </div>
-              ) : null}
-              {school ? (
-                <div className="flex items-center gap-3 text-chip">
-                  <FaGraduationCap className="w-5 h-5 text-quantum" />
+              )}
+              {school && (
+                <div className="flex items-center gap-3 text-sm" style={{ color: 'rgba(28,27,46,0.42)' }}>
+                  <FaGraduationCap className="w-4 h-4 flex-shrink-0 text-quantum" />
                   <span>{school}</span>
                 </div>
-              ) : null}
+              )}
             </div>
           </div>
 
-          {/* Newsletter */}
+          {/* Status */}
           <div>
-            <h4 className="text-lg font-semibold text-photon mb-4">Stay Updated</h4>
-            <p className="text-chip text-sm mb-4">
-              Get notified about my latest projects and insights in data analytics.
-            </p>
-            <div className="space-y-3">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="w-full px-4 py-2 neural-card focus:ring-2 focus:ring-electric outline-none"
-              />
-              <button className="quantum-button w-full">
-                Subscribe
-              </button>
+            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.42)' }}>
+              Status
+            </h4>
+            <div
+              className="p-4 rounded-xl"
+              style={{ background: 'rgba(4,120,87,0.06)', border: '1px solid rgba(4,120,87,0.18)' }}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <div className="w-2 h-2 rounded-full bg-neural animate-pulse"></div>
+                <span className="font-jetbrains text-xs text-neural">Open to Work</span>
+              </div>
+              <p className="text-xs leading-relaxed" style={{ color: 'rgba(28,27,46,0.45)' }}>
+                Seeking full-time SWE / data / ML roles starting Summer 2026. Currently exploring opportunities in the Bay Area and remote positions globally. Let's connect!
+              </p>
             </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="border-t border-electric/10 pt-8">
-          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div className="text-center sm:text-left space-y-2 sm:space-y-0">
-              <span className="text-chip text-sm block sm:inline">© {new Date().getFullYear()} {name}. All Rights Reserved.</span>
-              <span className="text-chip text-sm block sm:inline sm:ml-4">Made with ❤️ in San Jose</span>
-            </div>
-            
-            <div className="flex gap-6">
-              <a href="/privacy" className="text-chip hover:text-electric text-sm transition-colors duration-300">Privacy Policy</a>
-              <a href="/terms" className="text-chip hover:text-electric text-sm transition-colors duration-300">Terms of Service</a>
-            </div>
+        {/* Bottom bar */}
+        <div
+          className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8"
+          style={{ borderTop: '1px solid rgba(28,27,46,0.06)' }}
+        >
+          <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.3)' }}>
+            © {new Date().getFullYear()} {name}. Built with React · Tailwind · Framer Motion.
+          </p>
+          <div className="flex items-center gap-2 font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.3)' }}>
+            <span>San Jose, CA</span>
+            <span>·</span>
+            <span>Made with intention</span>
           </div>
         </div>
       </div>
 
-      {/* Scroll to Top Button */}
+      {/* Scroll to top */}
       <motion.button
-        onClick={scrollToTop}
-        className="fixed bottom-8 right-8 w-10 h-10 neural-card rounded-full flex items-center justify-center text-electric hover:text-quantum transition-colors duration-300"
-        whileHover={{ scale: 1.1 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        className="fixed bottom-8 right-8 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 z-50"
+        style={{ background: 'rgba(2,132,199,0.1)', border: '1px solid rgba(2,132,199,0.25)', color: '#0284c7' }}
+        whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(2,132,199,0.3)' }}
         whileTap={{ scale: 0.9 }}
+        aria-label="Scroll to top"
       >
-        <FaArrowUp className="w-5 h-5" />
+        <FaArrowUp className="w-4 h-4" />
       </motion.button>
     </footer>
   );

@@ -1,30 +1,30 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaCode } from 'react-icons/fa';
+import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaCode, FaGraduationCap, FaLaptopCode, FaRocket, FaLocationArrow } from 'react-icons/fa';
 
 const experiencesData = [
   {
-    title: " Software Engineering Intern",
+    title: "Software Engineering Intern",
     company: "KLA",
     period: "August 2025 – December 2025",
     location: "Milpitas, CA",
     description:
-      "Worked to enhance more features in the website for better user experience and performance optimization",
-      skills: ["TypeScript", "Pandas", "NumPy", "Matplotlib", "Pytorch"],
+      "Worked to enhance more features in the website for better user experience and performance optimization.",
+    skills: ["TypeScript", "Pandas", "NumPy", "Matplotlib", "Pytorch"],
     type: "Internship"
   },
   {
-    title: " Software Engineering Intern",
+    title: "Software Engineering Intern",
     company: "KLA",
     period: "May 2025 – August 2025",
     location: "Austin, Texas",
     description:
       "Developed a React-based analytics platform for semiconductor etch process optimization, enabling engineers to visualize Design of Experiments (DoE) trials and perform rapid comparative analysis across fabrication runs. By integrating recipe metadata with CD-SEM imaging data, the tool automatically detected process variations and anomalies, significantly improving fabrication decision accuracy. The solution featured scalable NoSQL data models optimized for storing and querying custom semiconductor metrics, accelerating insight generation and supporting high-throughput chip design workflows.",
-    skills: ["TypeScript", "React", "Node.js", "Python", "FASTAPI", "SQL", "Docker", "Kubernetes", "Physics"],  
+    skills: ["TypeScript", "React", "Node.js", "Python", "FASTAPI", "SQL", "Docker", "Kubernetes"],
     type: "Internship"
   },
   {
-    title: "Power Platform Developer Intern",
+    title: "Software Engineering Intern",
     company: "Linde",
     period: "January 2024 – April 2024",
     location: "Vadodara, India",
@@ -34,7 +34,7 @@ const experiencesData = [
     type: "Internship"
   },
   {
-    title: "Full Stack Web Developer Intern",
+    title: "Software Engineering Intern",
     company: "Schneider Electric (L&T E&A)",
     period: "May 2023 – June 2023",
     location: "Vadodara, India",
@@ -44,7 +44,7 @@ const experiencesData = [
     type: "Internship"
   },
   {
-    title: "Django Developer Intern",
+    title: "Software Engineering Intern",
     company: "Schneider Electric (L&T E&A)",
     period: "May 2022 – July 2022",
     location: "Vadodara, India",
@@ -55,67 +55,39 @@ const experiencesData = [
   },
 ];
 
+const itemVariants = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+};
+
 const Experience = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6
-      }
-    }
-  };
-
   return (
-    <div id="experience" className="min-h-screen relative py-20 px-4 sm:px-6 lg:px-8 bg-silicon">
-      {/* Circuit Pattern Overlay */}
-      <div className="absolute inset-0 bg-circuit-pattern opacity-5"></div>
+    <div id="experience" className="min-h-screen relative py-20 px-4 sm:px-6 lg:px-8" style={{ background: 'rgba(246,243,238,0.88)' }}>
+      <div className="absolute inset-0 bg-neural-grid opacity-30 pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto relative z-10">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <motion.div 
+        <motion.div
           className="text-center mb-16"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <motion.h2 
-            className="text-4xl sm:text-5xl font-bold mb-6"
-            variants={itemVariants}
-          >
+          <p className="section-eyebrow mb-4">// 04 — WHERE I'VE BEEN</p>
+          <h2 className="text-4xl sm:text-5xl font-fraunces font-light tracking-tight text-photon mb-6">
             Professional <span className="text-gradient">Experience</span>
-          </motion.h2>
-          <motion.p 
-            className="text-lg sm:text-xl text-chip max-w-3xl mx-auto"
-            variants={itemVariants}
-          >
-            My journey in technology and data analytics, from internships to developing 
-            innovative solutions that drive business value.
-          </motion.p>
+          </h2>
+          <p className="text-lg text-chip max-w-2xl mx-auto">
+            My journey in technology — from Vadodara to Austin, building tools that ship and stay shipped.
+          </p>
         </motion.div>
 
-        {/* Experience Timeline */}
-        <motion.div 
-          className="relative"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          {/* Timeline Line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-electric via-quantum to-circuit"></div>
+        {/* Timeline */}
+        <div className="timeline-container">
+          {/* The connecting line */}
+          <div className="timeline-line"></div>
 
-          {/* Experience Cards */}
           <div className="space-y-12">
             {experiencesData.map((experience, index) => (
               <motion.div
@@ -123,153 +95,174 @@ const Experience = () => {
                 className={`relative flex flex-col md:flex-row items-start gap-8 ${
                   index % 2 === 0 ? 'md:flex-row-reverse' : ''
                 }`}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: '-80px' }}
                 variants={itemVariants}
               >
-                {/* Timeline Node */}
-                <div className="absolute left-4 md:left-1/2 -translate-x-1/2 w-8 h-8 neural-card rounded-full border-2 border-electric flex items-center justify-center">
-                  <div className="w-3 h-3 bg-electric rounded-full animate-pulse"></div>
+                {/* Timeline node */}
+                <div
+                  className="absolute left-4 md:left-1/2 -translate-x-1/2 z-10 flex items-center justify-center"
+                  style={{ top: '28px' }}
+                >
+                  <div
+                    className="w-9 h-9 rounded-full flex items-center justify-center"
+                    style={{
+                      background: 'rgba(246,243,238,0.95)',
+                      border: '2px solid #0284c7',
+                      boxShadow: '0 0 12px rgba(2,132,199,0.3)',
+                    }}
+                  >
+                    <div className="w-3 h-3 rounded-full bg-electric animate-pulse"></div>
+                  </div>
                 </div>
 
-                {/* Content Card */}
-                <div className={`neural-card p-6 w-full md:w-5/12 ${
-                  index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'
-                } hover:bg-white/90 transition-colors duration-300 group`}>
-                  {/* Company and Type */}
-                  <div className="mb-6">
-                    <div className="flex items-center gap-2 mb-2">
-                      <div className="w-10 h-10 neural-card rounded-lg flex items-center justify-center bg-gradient-to-br from-electric to-quantum">
-                        <FaBriefcase className="w-5 h-5 text-white" />
-                      </div>
-                      <h3 className="text-2xl font-bold text-photon group-hover:text-electric transition-colors duration-300">
+                {/* Card */}
+                <div
+                  className={`neural-card p-6 w-full md:w-5/12 ml-14 md:ml-0 ${
+                    index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'
+                  }`}
+                  style={{ borderLeft: '2px solid rgba(108,212,255,0.2)' }}
+                >
+                  {/* Company header */}
+                  <div className="flex items-center gap-3 mb-4">
+                    <div
+                      className="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0"
+                      style={{ background: 'linear-gradient(135deg, rgba(2,132,199,0.1), rgba(124,58,237,0.1))', border: '1px solid rgba(2,132,199,0.2)' }}
+                    >
+                      <FaBriefcase className="w-4 h-4 text-electric" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-fraunces font-semibold text-photon">
                         {experience.company}
                       </h3>
-                    </div>
-                    <div className="flex items-center gap-2 ml-12">
-                      <span className="tech-badge bg-electric/10 text-electric">
+                      <span
+                        className="text-xs font-jetbrains uppercase tracking-widest"
+                        style={{ color: '#0284c7', opacity: 0.8 }}
+                      >
                         {experience.type}
                       </span>
                     </div>
                   </div>
 
-                  {/* Role Title */}
-                  <h4 className="text-lg font-semibold text-gradient mb-4 ml-12">
+                  {/* Role title */}
+                  <h4 className="text-base font-semibold text-gradient mb-3 font-inter">
                     {experience.title}
                   </h4>
 
-                  {/* Meta Info */}
-                  <div className="flex flex-wrap gap-3 text-sm mb-6 ml-12">
+                  {/* Meta */}
+                  <div className="flex flex-wrap gap-4 text-sm mb-4">
                     <div className="flex items-center gap-2 text-quantum">
-                      <FaCalendarAlt className="w-4 h-4" />
-                      <span className="font-medium">{experience.period}</span>
+                      <FaCalendarAlt className="w-3.5 h-3.5 flex-shrink-0" />
+                      <span className="font-jetbrains text-xs">{experience.period}</span>
                     </div>
                     {experience.location && (
                       <div className="flex items-center gap-2 text-circuit">
-                        <FaMapMarkerAlt className="w-4 h-4" />
-                        <span className="font-medium">{experience.location}</span>
+                        <FaMapMarkerAlt className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="font-jetbrains text-xs">{experience.location}</span>
                       </div>
                     )}
                   </div>
 
                   {/* Description */}
-                  <div className="mb-6 ml-12">
-                    <div className="prose prose-sm max-w-none">
-                      <p className="text-photon leading-relaxed tracking-normal">
-                        {experience.description.split('. ').map((sentence, idx, arr) => (
-                          <span key={idx} className="block mb-2">
-                            {sentence.trim()}.
-                          </span>
-                        ))}
-                      </p>
-                    </div>
-                  </div>
+                  <p className="text-sm leading-relaxed mb-5" style={{ color: 'rgba(28,27,46,0.65)' }}>
+                    {experience.description}
+                  </p>
 
                   {/* Skills */}
-                  <div className="flex flex-wrap gap-2 ml-12 pt-4 border-t border-electric/10">
+                  <div className="flex flex-wrap gap-2 pt-4" style={{ borderTop: '1px solid rgba(28,27,46,0.08)' }}>
                     {experience.skills.map((skill, idx) => (
-                      <motion.span 
-                        key={idx}
-                        className="tech-badge bg-white/50 hover:bg-white group/skill"
-                        whileHover={{ scale: 1.05 }}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: idx * 0.1 }}
-                      >
-                        <FaCode className="w-3 h-3 inline-block mr-1.5 text-electric group-hover/skill:text-quantum transition-colors duration-300" />
-                        <span className="font-medium">{skill}</span>
-                      </motion.span>
+                      <span key={idx} className="tech-badge">
+                        <FaCode className="w-2.5 h-2.5 text-electric" />
+                        {skill}
+                      </span>
                     ))}
                   </div>
                 </div>
               </motion.div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
-        {/* Education & Background */}
-        <motion.div 
-          className="mt-20"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
+        {/* Education */}
+        <motion.div
+          className="mt-24"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
         >
-          <div className="neural-card p-8">
-            <motion.h3 
-              className="text-2xl font-bold text-gradient text-center mb-8"
-              variants={itemVariants}
-            >
+          <div className="neural-card p-8" style={{ border: '1px solid rgba(28,27,46,0.08)' }}>
+            <h3 className="text-2xl font-fraunces font-light text-gradient text-center mb-10">
               Education & Background
-            </motion.h3>
+            </h3>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Education */}
-              <motion.div className="space-y-6" variants={itemVariants}>
+              <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 neural-card flex items-center justify-center flex-shrink-0">
-                    <span className="text-electric text-2xl">🎓</span>
-                  </div>
+                  <motion.div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'rgba(2,132,199,0.1)', border: '1px solid rgba(2,132,199,0.2)', animation: 'iconGlow 3s ease-in-out infinite' }}
+                    whileHover={{ rotate: 8, scale: 1.12 }}
+                  >
+                    <FaGraduationCap size={20} style={{ color: '#0284c7' }} />
+                  </motion.div>
                   <div>
-                    <h4 className="font-bold text-electric">Master's in Applied Data Intelligence</h4>
-                    <p className="text-quantum">San Jose State University</p>
-                    <p className="text-chip text-sm">August, 2024 - May, 2026</p>
+                    <h4 className="font-semibold text-electric mb-1">Master's in Applied Data Intelligence</h4>
+                    <p className="text-quantum text-sm">San Jose State University</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>August 2024 – May 2026</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 neural-card flex items-center justify-center flex-shrink-0">
-                    <span className="text-quantum text-2xl">💻</span>
-                  </div>
+                  <motion.div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'rgba(124,58,237,0.1)', border: '1px solid rgba(124,58,237,0.2)' }}
+                    whileHover={{ rotate: -8, scale: 1.12 }}
+                  >
+                    <FaLaptopCode size={20} style={{ color: '#7c3aed' }} />
+                  </motion.div>
                   <div>
-                    <h4 className="font-bold text-electric">Computer Engineering</h4>
-                    <p className="text-quantum">CHARUSAT University</p>
-                    <p className="text-chip text-sm">2020 - 2024</p>
+                    <h4 className="font-semibold text-electric mb-1">B.Tech — Computer Engineering</h4>
+                    <p className="text-quantum text-sm">CHARUSAT University</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>2020 – 2024</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
 
-              {/* Career & Location */}
-              <motion.div className="space-y-6" variants={itemVariants}>
+              <div className="space-y-6">
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 neural-card flex items-center justify-center flex-shrink-0">
-                    <span className="text-circuit text-2xl">🚀</span>
-                  </div>
+                  <motion.div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'rgba(194,96,10,0.1)', border: '1px solid rgba(194,96,10,0.2)' }}
+                    whileHover={{ y: -4, scale: 1.1 }}
+                    animate={{ y: [0, -4, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
+                  >
+                    <FaRocket size={18} style={{ color: '#c2600a' }} />
+                  </motion.div>
                   <div>
-                    <h4 className="font-bold text-electric">Career Focus</h4>
-                    <p className="text-quantum">Data Analytics & Full Stack</p>
-                    <p className="text-chip text-sm">Full-time opportunities</p>
+                    <h4 className="font-semibold text-electric mb-1">Career Focus</h4>
+                    <p className="text-quantum text-sm">Software / Data / ML Engineering</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>Full-time · Summer 2026</p>
                   </div>
                 </div>
 
                 <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 neural-card flex items-center justify-center flex-shrink-0">
-                    <span className="text-neural text-2xl">📍</span>
-                  </div>
+                  <motion.div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{ background: 'rgba(4,120,87,0.1)', border: '1px solid rgba(4,120,87,0.2)' }}
+                    whileHover={{ rotate: 15, scale: 1.1 }}
+                  >
+                    <FaLocationArrow size={18} style={{ color: '#047857' }} />
+                  </motion.div>
                   <div>
-                    <h4 className="font-bold text-electric">Location</h4>
-                    <p className="text-quantum">San Jose, CA</p>
-                    <p className="text-chip text-sm">Open to relocation</p>
+                    <h4 className="font-semibold text-electric mb-1">Location</h4>
+                    <p className="text-quantum text-sm">San Jose, CA</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>Open to relocation · US-authorized</p>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             </div>
           </div>
         </motion.div>

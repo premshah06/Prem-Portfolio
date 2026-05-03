@@ -4,53 +4,55 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Primary Colors
+        // Light warm background
         silicon: {
-          DEFAULT: '#F5F7FF',
-          light: '#FFFFFF',
-          dark: '#E5E7F0',
+          DEFAULT: '#f6f3ee',
+          light: '#faf8f4',
+          dark: '#ede9e1',
         },
+        // Deep navy accent
         electric: {
-          DEFAULT: '#0090FF',
-          light: '#33A8FF',
-          dark: '#0072CC',
+          DEFAULT: '#0284c7',
+          light: '#0ea5e9',
+          dark: '#0369a1',
         },
         quantum: {
-          DEFAULT: '#7B5CD6',
-          light: '#9B7CE6',
-          dark: '#5B3CB6',
+          DEFAULT: '#7c3aed',
+          light: '#8b5cf6',
+          dark: '#6d28d9',
         },
         circuit: {
-          DEFAULT: '#FF9500',
-          light: '#FFB033',
-          dark: '#CC7700',
+          DEFAULT: '#c2600a',
+          light: '#d97706',
+          dark: '#9a4500',
         },
-        // Secondary Colors
         neural: {
-          DEFAULT: '#00E676',
-          light: '#33EB91',
-          dark: '#00B65C',
+          DEFAULT: '#047857',
+          light: '#059669',
+          dark: '#065f46',
         },
+        // Dark text on light bg
         photon: {
-          DEFAULT: '#2D3748',
-          light: '#4A5568',
-          dark: '#1A202C',
+          DEFAULT: '#1c1b2e',
+          light: '#2d2c40',
+          dark: '#0f0e1c',
         },
         chip: {
-          DEFAULT: '#718096',
-          light: '#A0AEC0',
-          dark: '#4A5568',
+          DEFAULT: 'rgba(28,27,46,0.55)',
+          light: 'rgba(28,27,46,0.75)',
+          dark: 'rgba(28,27,46,0.35)',
         },
         matter: {
-          DEFAULT: '#1A202C',
-          light: '#2D3748',
-          dark: '#171923',
+          DEFAULT: '#ffffff',
+          light: '#ffffff',
+          dark: '#f0ede8',
         },
       },
       fontFamily: {
+        fraunces: ['Fraunces', 'Georgia', 'serif'],
         orbitron: ['Orbitron', 'sans-serif'],
         space: ['Space Grotesk', 'sans-serif'],
-        inter: ['Inter', 'sans-serif'],
+        inter: ['Inter Tight', 'Inter', 'sans-serif'],
         ibm: ['IBM Plex Sans', 'sans-serif'],
         jetbrains: ['JetBrains Mono', 'monospace'],
       },
@@ -83,14 +85,12 @@ module.exports = {
         },
       },
       backgroundImage: {
-        'grid-pattern': 'linear-gradient(to right, #1a1e3720 1px, transparent 1px), linear-gradient(to bottom, #1a1e3720 1px, transparent 1px)',
-        'circuit-pattern': 'url("/src/assests/circuit.jpg")',
-        'neural-pattern': 'url("/src/assets/patterns/neural.svg")',
+        'grid-pattern': 'linear-gradient(to right, rgba(108,212,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(108,212,255,0.06) 1px, transparent 1px)',
       },
       boxShadow: {
-        'neon': '0 0 5px theme("colors.electric.DEFAULT"), 0 0 20px theme("colors.electric.DEFAULT")',
-        'neon-purple': '0 0 5px theme("colors.quantum.DEFAULT"), 0 0 20px theme("colors.quantum.DEFAULT")',
-        'neon-gold': '0 0 5px theme("colors.circuit.DEFAULT"), 0 0 20px theme("colors.circuit.DEFAULT")',
+        'neon': '0 0 8px rgba(108,212,255,0.5), 0 0 24px rgba(108,212,255,0.2)',
+        'neon-purple': '0 0 8px rgba(180,140,255,0.5), 0 0 24px rgba(180,140,255,0.2)',
+        'neon-gold': '0 0 8px rgba(255,176,104,0.5), 0 0 24px rgba(255,176,104,0.2)',
       },
     },
   },

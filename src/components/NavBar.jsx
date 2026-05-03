@@ -11,73 +11,58 @@ const Navbar = () => {
   const mailto = email ? `mailto:${email}` : '';
   const linkedinUrl = SITE.linkedinUrl;
   const githubUrl = SITE.githubUrl;
-  
-  useEffect(() => {
-    const handleScroll = () => {
-      const isScrolled = window.scrollY > 20;
-      setScrolled(isScrolled);
-    };
 
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleClick = () => setNav(!nav);
-
   const navLinks = [
-    { name: 'home', label: 'Home', icon: <FaHome className="w-4 h-4" /> },
-    { name: 'experience', label: 'Experience', icon: <FaBriefcase className="w-4 h-4" /> },
-    { name: 'skills', label: 'Skills', icon: <FaCode className="w-4 h-4" /> },
-    { name: 'work', label: 'Work', icon: <FaProjectDiagram className="w-4 h-4" /> },
-    { name: 'certificates', label: 'Certificates', icon: <FaCertificate className="w-4 h-4" /> }
+    { name: 'home',         label: 'Home',         icon: <FaHome className="w-3.5 h-3.5" /> },
+    { name: 'experience',   label: 'Experience',   icon: <FaBriefcase className="w-3.5 h-3.5" /> },
+    { name: 'skills',       label: 'Skills',       icon: <FaCode className="w-3.5 h-3.5" /> },
+    { name: 'work',         label: 'Work',         icon: <FaProjectDiagram className="w-3.5 h-3.5" /> },
+    { name: 'certificates', label: 'Certificates', icon: <FaCertificate className="w-3.5 h-3.5" /> },
   ];
 
   const socialLinks = [
-    linkedinUrl
-      ? {
-          href: linkedinUrl,
-          label: 'LinkedIn',
-          icon: <FaLinkedin className="w-5 h-5" />
-        }
-      : null,
-    githubUrl
-      ? {
-          href: githubUrl,
-          label: 'GitHub',
-          icon: <FaGithub className="w-5 h-5" />
-        }
-      : null,
-    mailto
-      ? {
-          href: mailto,
-          label: 'Email',
-          icon: <FaEnvelope className="w-5 h-5" />
-        }
-      : null,
+    linkedinUrl ? { href: linkedinUrl, label: 'LinkedIn', icon: <FaLinkedin className="w-4 h-4" /> } : null,
+    githubUrl   ? { href: githubUrl,   label: 'GitHub',   icon: <FaGithub className="w-4 h-4" /> }   : null,
+    mailto      ? { href: mailto,      label: 'Email',    icon: <FaEnvelope className="w-4 h-4" /> }  : null,
   ].filter(Boolean);
 
+  const navBg = scrolled
+    ? 'rgba(246,243,238,0.92)'
+    : 'transparent';
+
+  const navBorder = scrolled
+    ? '1px solid rgba(28,27,46,0.08)'
+    : '1px solid transparent';
+
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white/80 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-      {/* Desktop Navigation */}
+    <nav
+      className="fixed w-full z-50 transition-all duration-300"
+      style={{ background: navBg, borderBottom: navBorder, backdropFilter: scrolled ? 'blur(16px)' : 'none' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <motion.div 
-            className="flex items-center gap-2"
+          {/* Wordmark */}
+          <motion.a
+            href="#home"
+            className="flex flex-col leading-none"
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
           >
-            <div className="w-8 h-8 bg-gradient-to-r from-electric to-quantum rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold">PS</span>
-            </div>
-            <span className="text-lg font-semibold text-photon">{name}</span>
-          </motion.div>
+            <span className="font-fraunces text-base font-semibold text-photon tracking-tight">{name}</span>
+            <span className="font-jetbrains text-xs" style={{ color: 'rgba(244,237,228,0.42)', letterSpacing: '0.08em' }}>↳ portfolio</span>
+          </motion.a>
 
-          {/* Desktop Menu */}
-          <motion.div 
-            className="hidden md:flex items-center gap-6"
-            initial={{ opacity: 0, y: -20 }}
+          {/* Desktop links */}
+          <motion.div
+            className="hidden md:flex items-center gap-1"
+            initial={{ opacity: 0, y: -16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
           >
@@ -85,11 +70,14 @@ const Navbar = () => {
               <motion.a
                 key={item.name}
                 href={`#${item.name}`}
-                className="flex items-center gap-2 px-3 py-2 text-photon hover:text-electric transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                initial={{ opacity: 0, y: -20 }}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-all duration-200"
+                style={{ color: 'rgba(28,27,46,0.55)', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px' }}
+                whileHover={{ scale: 1.03 }}
+                onMouseEnter={e => e.currentTarget.style.color = '#0284c7'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(28,27,46,0.55)'}
+                initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ duration: 0.3, delay: index * 0.07 }}
               >
                 {item.icon}
                 <span>{item.label}</span>
@@ -97,9 +85,9 @@ const Navbar = () => {
             ))}
           </motion.div>
 
-          {/* Social Links - Desktop */}
-          <motion.div 
-            className="hidden md:flex items-center gap-4"
+          {/* Social icons */}
+          <motion.div
+            className="hidden md:flex items-center gap-2"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5 }}
@@ -110,34 +98,31 @@ const Navbar = () => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tech-badge"
+                aria-label={item.label}
+                className="p-2 rounded-lg transition-all duration-200"
+                style={{ color: 'rgba(28,27,46,0.42)', border: '1px solid rgba(28,27,46,0.1)' }}
                 whileHover={{ scale: 1.1 }}
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                onMouseEnter={e => { e.currentTarget.style.color = '#0284c7'; e.currentTarget.style.borderColor = 'rgba(2,132,199,0.3)'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.42)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.1)'; }}
               >
                 {item.icon}
               </motion.a>
             ))}
           </motion.div>
 
-          {/* Mobile Menu Button */}
-          <motion.div 
-            className="md:hidden"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
+          {/* Mobile toggle */}
+          <button
+            onClick={() => setNav(!nav)}
+            className="md:hidden p-2 rounded-lg transition-colors duration-200"
+            style={{ color: 'rgba(28,27,46,0.65)' }}
+            aria-label="Toggle menu"
           >
-            <button
-              onClick={handleClick}
-              className="p-2 rounded-lg text-photon hover:text-electric transition-colors duration-300"
-            >
-              {nav ? <FaTimes className="w-6 h-6" /> : <FaBars className="w-6 h-6" />}
-            </button>
-          </motion.div>
+            {nav ? <FaTimes className="w-5 h-5" /> : <FaBars className="w-5 h-5" />}
+          </button>
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile menu */}
       <AnimatePresence>
         {nav && (
           <motion.div
@@ -145,34 +130,38 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
+            transition={{ duration: 0.25 }}
           >
-            <div className="px-4 pt-2 pb-4 bg-white/90 backdrop-blur-md shadow-lg">
+            <div
+              className="px-4 pt-2 pb-6"
+              style={{ background: 'rgba(246,243,238,0.97)', borderBottom: '1px solid rgba(28,27,46,0.08)' }}
+            >
               {navLinks.map((item) => (
-                <motion.a
+                <a
                   key={item.name}
                   href={`#${item.name}`}
-                  className="flex items-center gap-3 px-4 py-3 text-photon hover:text-electric hover:bg-electric/5 rounded-lg transition-colors duration-300"
-                  onClick={handleClick}
-                  whileHover={{ x: 10 }}
+                  className="flex items-center gap-3 px-4 py-3 rounded-lg transition-colors duration-200"
+                  style={{ color: 'rgba(28,27,46,0.65)', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px' }}
+                  onClick={() => setNav(false)}
                 >
                   {item.icon}
                   <span>{item.label}</span>
-                </motion.a>
+                </a>
               ))}
-              
-              <div className="mt-4 flex gap-4 px-4 py-3 border-t border-electric/10">
+
+              <div className="flex gap-3 px-4 pt-4" style={{ borderTop: '1px solid rgba(28,27,46,0.08)', marginTop: '8px' }}>
                 {socialLinks.map((item, index) => (
-                  <motion.a
+                  <a
                     key={index}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="tech-badge"
-                    whileHover={{ scale: 1.1 }}
+                    aria-label={item.label}
+                    className="p-2 rounded-lg"
+                    style={{ color: '#6cd4ff', border: '1px solid rgba(108,212,255,0.2)' }}
                   >
                     {item.icon}
-                  </motion.a>
+                  </a>
                 ))}
               </div>
             </div>

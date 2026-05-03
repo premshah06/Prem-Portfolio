@@ -1,127 +1,178 @@
-import number from '../assests/11.jpeg';
-import dash from '../assests/Dashboard.png';
-import heart from '../assests/heart.png';
-import blood from '../assests/13.png';
-import job from '../assests/job.png';
-import text from '../assests/texthidder.png';
-import cyber from '../assests/seasonal.jpg';
-import sea from '../assests/image (16).png';
-import aifit from '../assests/aifit.png';
-
+import {
+  EchoGraphDiagram,
+  EdgeMindDiagram,
+  ExpertParkDiagram,
+  IncidentDNADiagram,
+  LifeDirectorDiagram,
+  RecallDBDiagram,
+  SeasonalDiagram,
+  CyberDiagram,
+  AirBnBDiagram,
+  JobAnalyzerDiagram,
+  AiFitDiagram,
+  NumberPlateDiagram,
+  HeartDiagram,
+  BloodDonationDiagram,
+  TextHidderDiagram,
+} from './diagrams';
 
 export const data = [
+  /* ── AI / Multi-agent projects ───────────────────────────── */
   {
-    id: 12,
-    name: "AI-Powered Healthcare Analytics Platform",
-    image: heart, // Using heart image as placeholder
-    github: "https://github.com/premshah06/healthcare-analytics",
-    live: "https://healthcare-analytics.demo.dev",
-    description: "Developed a comprehensive healthcare analytics platform using advanced ML models and LLMs. Implemented real-time patient monitoring with Apache Kafka, automated report generation with GPT-4, and predictive analytics for patient outcomes. Achieved 92% accuracy in early disease detection and reduced diagnostic time by 65%.",
-    skills: ["Python", "TensorFlow", "LangChain", "Apache Kafka", "FastAPI", "AWS", "React", "PostgreSQL"],
-    type: "Full Stack ML",
-    views: "1.2K",
-    stars: "156"
+    id: 20,
+    name: "EchoGraph",
+    diagram: EchoGraphDiagram,
+    accent: '#7c3aed',
+    github: "https://github.com/premshah06/echograph",
+    description: "A multi-agent living knowledge base built with LangGraph and FastAPI. Five specialized AI agents — Librarian, Philosopher, Critic, Synthesizer, and Scholar — ingest content, detect contradictions, synthesize higher-confidence knowledge, and answer questions with source citations. Features ChromaDB persistent vector storage, real-time WebSocket event streaming, and a Three.js + d3-force-3d 3D graph visualization frontend.",
+    skills: ["LangGraph", "FastAPI", "ChromaDB", "OpenAI", "WebSocket", "Three.js", "d3-force-3d", "Python", "Docker"],
+    type: "Multi-Agent AI",
+    stars: "48",
   },
   {
-    id: 0,
-    name: "AI-Powered Document Intelligence Platform",
-    image: aifit, // Placeholder image
-    github: "https://github.com/premshah06/doc-intelligence",
-    live: "https://doc-intelligence.demo.dev",
-    description: "Built an enterprise-grade document processing platform using LangChain and GPT-4. Implemented RAG (Retrieval-Augmented Generation) with Pinecone for semantic search across millions of documents. Achieved 95% accuracy in information extraction and reduced processing time by 80%.",
-    skills: ["LangChain", "OpenAI", "Vector DB", "FastAPI", "React", "MLOps"],
-    type: "Full Stack AI"
+    id: 21,
+    name: "EdgeMind",
+    diagram: EdgeMindDiagram,
+    accent: '#7c3aed',
+    github: "https://github.com/premshah06/edgemind",
+    description: "On-device AI agent with cloud sync built on LangGraph and Ollama. Runs a ReAct reasoning loop against a local llama3.1 model, stores embeddings in SQLite via ONNX Runtime cosine similarity, and syncs session summaries to PostgreSQL through FastAPI. Includes tool use for file reading, web search, and calculation with automatic confidence scoring and retry logic.",
+    skills: ["LangGraph", "Ollama", "SQLite", "FastAPI", "PostgreSQL", "ONNX Runtime", "pybind11", "Python", "Docker"],
+    type: "Edge AI",
   },
   {
-    id: 10,
-    name: "Real-time Data Analytics Pipeline with Modern Data Stack",
-    image: dash,
-    github: "https://github.com/premshah06/modern-data-stack",
-    live: "https://analytics.demo.dev",
-    description: "Architected a modern data stack using Airbyte, dbt, Snowflake, and Preset. Implemented stream processing with Apache Kafka and Flink for real-time analytics. Reduced data latency by 90% and improved data quality using Great Expectations.",
-    skills: ["Airbyte", "dbt", "Snowflake", "Apache Flink", "Kafka", "Data Quality"],
-    type: "Data Engineering"
+    id: 23,
+    name: "IncidentDNA",
+    diagram: IncidentDNADiagram,
+    accent: '#c2600a',
+    github: "https://github.com/premshah06/incidentdna",
+    description: "Autonomous incident intelligence platform that detects deployment anomalies via Snowflake, then orchestrates five CrewAI agents — Detector, Investigator, Fix Advisor, Action Agent, and Validator — to investigate root causes and resolve incidents within 2 minutes. Automatically posts Slack alerts and creates GitHub issues. Includes a React + Vite dashboard with Plotly visualizations.",
+    skills: ["CrewAI", "Snowflake", "FastAPI", "React", "Vite", "PostgreSQL", "Slack API", "GitHub API", "Docker"],
+    type: "AI DevOps",
   },
+  {
+    id: 24,
+    name: "LifeDirector",
+    diagram: LifeDirectorDiagram,
+    accent: '#7c3aed',
+    github: "https://github.com/premshah06/lifedirector",
+    description: "AI-powered personal narrative engine that transforms daily journal entries — text or voice via Whisper ASR — into beautifully written cinematic chapters using a local Ollama LLM. Generates accompanying images via fal.ai SDXL, tracks quality scores and narrative drift detection, and streams token-by-token output via Server-Sent Events to a React + TypeScript frontend.",
+    skills: ["FastAPI", "Ollama", "Whisper ASR", "fal.ai SDXL", "React", "TypeScript", "SQLAlchemy", "SSE", "Docker"],
+    type: "Full Stack AI",
+  },
+  {
+    id: 22,
+    name: "Expert Park",
+    diagram: ExpertParkDiagram,
+    accent: '#0284c7',
+    github: "https://github.com/premshah06/expert-park-3d",
+    description: "A 3D interactive park where AI expert NPCs stand in-world with floating domain labels and expandable expertise panels. Built entirely with vanilla JavaScript ES modules and Three.js, featuring first-person movement with mouse look, sprint, jump, collision handling, and mobile auto-tour mode. Clicking an expert generates system prompt blueprints for domain-specific queries.",
+    skills: ["Three.js", "WebGL", "JavaScript", "HTML5", "CSS3", "OpenAI API", "3D Graphics"],
+    type: "3D Web",
+  },
+  {
+    id: 25,
+    name: "RecallDB",
+    diagram: RecallDBDiagram,
+    accent: '#047857',
+    github: "https://github.com/premshah06/recalldb",
+    description: "High-performance vector similarity search engine written in C++17 with Python bindings via pybind11. Implements three indexing algorithms — Brute Force, KD-Tree, and HNSW — with thread-safe concurrent access via shared_mutex, automatic embedding generation through sentence-transformers and ONNX Runtime, binary persistence, and both a FastAPI REST interface and CLI.",
+    skills: ["C++17", "pybind11", "Python", "HNSW", "FastAPI", "ONNX Runtime", "sentence-transformers", "CMake"],
+    type: "Systems / DB",
+  },
+
+  /* ── Data & Analytics projects ───────────────────────────── */
   {
     id: 1,
     name: "Seasonal Variation in Aging-Associated Health Measures",
-    image: sea, // Add image for the seasonal project
-    github: "https://github.com/premshah06/Seasonal-Variation-in-Aging-Associated-Health-Measures-Alzheimers-and-Mental-Health-Patterns", // Add link to GitHub repository
-    description:
-      "Built a data pipeline integrating CDC and Census datasets, optimizing ETL efficiency by 60% with 99.9% accuracy. Developed dashboards to track aging health trends, enhancing insight by 40% for data-driven healthcare decisions.",
+    diagram: SeasonalDiagram,
+    accent: '#c2600a',
+    github: "https://github.com/premshah06/Seasonal-Variation-in-Aging-Associated-Health-Measures-Alzheimers-and-Mental-Health-Patterns",
+    description: "Built a data pipeline integrating CDC and Census datasets, optimizing ETL efficiency by 60% with 99.9% accuracy. Developed dashboards to track aging health trends, enhancing insight by 40% for data-driven healthcare decisions.",
     skills: ["Python", "Tableau", "AWS", "ETL"],
+    type: "Data Analytics",
   },
   {
     id: 2,
     name: "Optimized Cyber Attack Analysis and Network Defense",
-    image: cyber, // Add image for the cyber attack project
-    github: "https://github.com/premshah06/Optimized-Cyber-Attack-Analysis-and-Network-Defense-using-ETL", // Add link to GitHub repository
-    description:
-      "Designed and deployed efficient ETL workflows in Amazon Redshift and Neo4j using Apache NiFi. Integrated Kafka with Cassandra to handle high-velocity, real-time data ingestion, supporting immediate threat detection.",
+    diagram: CyberDiagram,
+    accent: '#7c3aed',
+    github: "https://github.com/premshah06/Optimized-Cyber-Attack-Analysis-and-Network-Defense-using-ETL",
+    description: "Designed and deployed efficient ETL workflows in Amazon Redshift and Neo4j using Apache NiFi. Integrated Kafka with Cassandra to handle high-velocity, real-time data ingestion, supporting immediate threat detection.",
     skills: ["AWS Redshift", "Neo4J", "Cassandra", "Apache NiFi", "Kafka"],
+    type: "Data Engineering",
   },
   {
     id: 3,
     name: "AirBnB Dashboard",
-    image: dash,
+    diagram: AirBnBDiagram,
+    accent: '#0284c7',
     github: "https://github.com/premshah06/AirBnB-Dashboard",
-    description:
-      "Developed an interactive Tableau dashboard for Airbnb data, visualizing key metrics such as average prices, booking trends, and revenue by zip code. This project helps investors make informed property decisions using rich data insights and visualizations.",
+    description: "Developed an interactive Tableau dashboard for Airbnb data, visualizing key metrics such as average prices, booking trends, and revenue by zip code. Helps investors make informed property decisions using rich data insights.",
     skills: ["Tableau", "Python", "SQL"],
+    type: "Analytics",
   },
   {
     id: 4,
     name: "Job Details Analyzer",
-    image: job,
+    diagram: JobAnalyzerDiagram,
+    accent: '#c2600a',
     github: "https://github.com/premshah06/Job-Detail-Analyzer",
-    description:
-      "Implemented an advanced ETL pipeline in Python for extracting and analyzing job market data. Features custom heatmaps, multi-index pivot tables, and trend analysis to uncover actionable insights on employment trends and salary distributions.",
+    description: "Implemented an advanced ETL pipeline in Python for extracting and analyzing job market data. Features custom heatmaps, multi-index pivot tables, and trend analysis to uncover actionable insights on employment trends and salary distributions.",
     skills: ["Python", "Colab", "SQL", "NumPy", "Seaborn"],
+    type: "Data Analysis",
   },
+
+  /* ── AI / ML applications ────────────────────────────────── */
   {
     id: 5,
-    name: "AI Fit - Fitness App",
-    image: aifit,
+    name: "AI Fit — Fitness Coach",
+    diagram: AiFitDiagram,
+    accent: '#7c3aed',
     github: "https://github.com/premshah06/AI-Fit-App",
-    description:
-      "Fit-AI-Coach is a cutting-edge web application designed to deliver personalized fitness and diet plans using Google's Gemini Pro Model. With its user-friendly interface and intelligent recommendations, Fit-AI-Coach is perfect for anyone aiming to achieve specific fitness goals, enhance their health, or maintain a healthy lifestyle.",
-    skills: ["Python", "Gen AI", "Streamlit", "Google Cloud"],
+    description: "A personalized fitness and diet planning web app powered by Google's Gemini Pro. Delivers intelligent workout and nutrition recommendations based on user goals, leveraging generative AI for adaptive, real-time coaching.",
+    skills: ["Python", "Gemini Pro", "Streamlit", "Google Cloud"],
+    type: "AI Application",
   },
   {
     id: 6,
     name: "Number Plate Detection System",
-    image: number,
+    diagram: NumberPlateDiagram,
+    accent: '#0284c7',
     github: "https://github.com/premshah06/Number-Plate-Recognition-System",
-    description:
-      "Enhanced traffic security by developing a system using OCR and OpenCV to detect and recognize license plates from user-uploaded images. The application facilitates efficient law enforcement and road safety compliance.",
-    skills: ["Python", "OpenCV", "Streamlit"],
+    description: "Enhanced traffic security by developing a system using OCR and OpenCV to detect and recognize license plates from user-uploaded images. Facilitates efficient law enforcement and road safety compliance.",
+    skills: ["Python", "OpenCV", "OCR", "Streamlit"],
+    type: "Computer Vision",
   },
   {
     id: 7,
-    name: "Heart and Diabetes Detection System",
-    image: heart,
+    name: "Heart & Diabetes Detection System",
+    diagram: HeartDiagram,
+    accent: '#047857',
     github: "https://github.com/premshah06/apps",
-    description:
-      "Built a predictive machine learning model for detecting heart disease and diabetes. Utilized patient data to provide healthcare providers with actionable insights, empowering them to identify at-risk individuals early.",
-    skills: ["Python", "Jupyter", "Power BI", "Streamlit"],
+    description: "Built predictive machine learning models for detecting heart disease and diabetes from patient data. Provides healthcare providers with actionable insights to identify at-risk individuals early, with an interactive Streamlit dashboard.",
+    skills: ["Python", "Scikit-learn", "Power BI", "Streamlit"],
+    type: "ML / Healthcare",
   },
+
+  /* ── Mobile / Security projects ──────────────────────────── */
   {
     id: 8,
     name: "Blood Donation Application",
-    image: blood,
+    diagram: BloodDonationDiagram,
+    accent: '#c2600a',
     github: "https://github.com/premshah06/Blood-Donation-App",
-    description:
-      "Created a Java-based Android app to connect donors and recipients efficiently. Features include user profile creation, blood group filtering, and Firebase integration for real-time communication and database management.",
+    description: "Created a Java-based Android app to connect blood donors and recipients efficiently. Features include user profile creation, blood group filtering, and Firebase integration for real-time communication and database management.",
     skills: ["Android", "Java", "Firebase"],
+    type: "Mobile App",
   },
   {
     id: 9,
-    name: "TextHidder",
-    image: text,
+    name: "TextHidder — Image Steganography",
+    diagram: TextHidderDiagram,
+    accent: '#7c3aed',
     github: "https://github.com/premshah06/Texthidder",
-    description:
-      "Developed an image steganography project with AES encryption. The GUI-based application allows users to securely hide and retrieve sensitive data within images, providing a practical implementation of cryptographic principles.",
-    skills: ["Python", "Tkinter", "Encryption"],
+    description: "An image steganography tool with AES encryption. The GUI-based application allows users to securely hide and retrieve sensitive data within images, providing a practical implementation of cryptographic principles.",
+    skills: ["Python", "Tkinter", "AES Encryption", "Cryptography"],
+    type: "Security",
   },
- 
 ];

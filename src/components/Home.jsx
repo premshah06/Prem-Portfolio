@@ -1,321 +1,289 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Github, Linkedin, Mail, FileText, Database, Code, Cpu, ArrowRight } from 'lucide-react';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 import SITE from '../config/site';
 
-const Home = () => {
-  const name = SITE.name;
-  const email = SITE.email;
-  const mailto = email ? `mailto:${email}` : '';
-  const githubUrl = SITE.githubUrl;
+/* ── Animated counter ───────────────────────────────────────── */
+function Counter({ to, suffix = '', duration = 1600 }) {
+  const [val, setVal]   = useState(0);
+  const ref             = useRef(null);
+  const started         = useRef(false);
+  const inView          = useInView(ref, { once: true, margin: '-40px' });
+
+  useEffect(() => {
+    if (!inView || started.current) return;
+    started.current = true;
+    const start = performance.now();
+    const tick  = (now) => {
+      const p     = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      setVal(Math.round(eased * to));
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }, [inView, to, duration]);
+
+  return <span ref={ref}>{val}{suffix}</span>;
+}
+
+/* ── Word-reveal variant ────────────────────────────────────── */
+const wordContainer = {
+  hidden: {},
+  visible: { transition: { staggerChildren: 0.1 } },
+};
+const wordChild = {
+  hidden:  { y: '110%', opacity: 0 },
+  visible: { y: 0, opacity: 1, transition: { duration: 0.65, ease: [0.22, 1, 0.36, 1] } },
+};
+
+export default function Home() {
+  const name        = SITE.name      || 'Prem Shah';
+  const email       = SITE.email;
+  const mailto      = email ? `mailto:${email}` : '';
+  const githubUrl   = SITE.githubUrl;
   const linkedinUrl = SITE.linkedinUrl;
-  const resumeUrl = SITE.resumeUrl || '/resume.pdf';
 
-  const fadeIn = {
-    initial: { opacity: 0, y: 20 },
-    animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.6 }
-  };
+  /* ── Typewriter ─────────────────────────────────────────── */
+  const fullText  = 'Prev — SWE Intern @ KLA · M.S. Applied Data Intelligence';
+  const [typed, setTyped] = useState('');
 
-  const slideIn = {
-    initial: { opacity: 0, x: -20 },
-    animate: { opacity: 1, x: 0 },
-    transition: { duration: 0.6, delay: 0.2 }
-  };
+  useEffect(() => {
+    let i = 0;
+    const delay = setTimeout(() => {
+      const id = setInterval(() => {
+        i++;
+        setTyped(fullText.slice(0, i));
+        if (i >= fullText.length) clearInterval(id);
+      }, 32);
+      return () => clearInterval(id);
+    }, 900);
+    return () => clearTimeout(delay);
+  }, []);
+
+  const socialLinks = [
+    githubUrl   ? { href: githubUrl,   icon: <Github   className="w-5 h-5" />, label: 'GitHub'   } : null,
+    linkedinUrl ? { href: linkedinUrl, icon: <Linkedin className="w-5 h-5" />, label: 'LinkedIn' } : null,
+    mailto      ? { href: mailto,      icon: <Mail     className="w-5 h-5" />, label: 'Email'    } : null,
+  ].filter(Boolean);
+
+  const pillars = [
+    { label: 'Data & AI',       items: ['Machine Learning', 'LLMs / RAG', 'Analytics', 'Computer Vision'] },
+    { label: 'Engineering',     items: ['Full Stack', 'Cloud / MLOps', 'System Design', 'APIs'] },
+    { label: 'Data Pipelines',  items: ['ETL / ELT', 'Spark / Kafka', 'Snowflake', 'dbt'] },
+  ];
+
+  const nameWords = name.split(' ');
 
   return (
-    <div 
-      id="home" 
-      className="w-full min-h-screen h-screen relative flex items-stretch bg-silicon overflow-hidden"
+    <div
+      id="home"
+      className="w-full min-h-screen relative flex items-center overflow-hidden"
+      style={{ background: 'transparent' }}
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0">
-        {/* Grid Pattern */}
-        <div 
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(0, 144, 255, 0.1) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(0, 144, 255, 0.1) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px',
-          }}
-        />
-        
-        {/* Floating Elements */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-electric/10 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-quantum/10 rounded-full blur-3xl animate-pulse delay-1000" />
-        <div className="absolute top-3/4 left-1/2 w-48 h-48 bg-circuit/10 rounded-full blur-3xl animate-pulse delay-2000" />
+      {/* Grid */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: 'linear-gradient(to right, rgba(28,27,46,0.045) 1px, transparent 1px), linear-gradient(to bottom, rgba(28,27,46,0.045) 1px, transparent 1px)',
+          backgroundSize: '60px 60px',
+        }}
+      />
+
+      {/* Drifting glow blobs */}
+      <div className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full pointer-events-none"
+        style={{ background: 'rgba(2,132,199,0.08)', filter: 'blur(80px)', animation: 'blobDrift1 18s ease-in-out infinite' }} />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: 'rgba(124,58,237,0.07)', filter: 'blur(100px)', animation: 'blobDrift2 22s ease-in-out infinite' }} />
+      <div className="absolute top-2/3 left-1/2 w-56 h-56 rounded-full pointer-events-none"
+        style={{ background: 'rgba(194,96,10,0.06)', filter: 'blur(70px)', animation: 'blobDrift1 26s ease-in-out infinite reverse' }} />
+
+      {/* Background monogram */}
+      <div
+        className="absolute right-0 top-1/2 -translate-y-1/2 pointer-events-none select-none font-fraunces font-bold italic"
+        style={{
+          fontSize: 'clamp(120px, 22vw, 300px)',
+          color: 'transparent',
+          WebkitTextStroke: '1px rgba(28,27,46,0.06)',
+          letterSpacing: '-0.05em',
+          lineHeight: 1,
+          right: '4%',
+        }}
+      >
+        P.S.
       </div>
-      
-      <div className="w-full h-full flex flex-col lg:flex-row items-stretch relative z-10">
-        {/* Left Section - Full width on mobile, 55% on desktop */}
-        <motion.div 
-          className="w-full lg:w-[60%] xl:w-[55%] min-h-[60vh] lg:h-full flex items-center justify-center p-3 sm:p-4 lg:p-6 mt-16 lg:mt-0"
-          initial="initial"
-          animate="animate"
-          variants={fadeIn}
-        >
-          <div className="w-full max-w-2xl neural-card p-4 sm:p-5 lg:p-6 relative">
-            {/* Decorative Corner Elements */}
-            <div className="absolute top-0 left-0 w-16 h-16 sm:w-20 sm:h-20 border-t-2 border-l-2 border-electric/20 rounded-tl-2xl" />
-            <div className="absolute bottom-0 right-0 w-16 h-16 sm:w-20 sm:h-20 border-b-2 border-r-2 border-quantum/20 rounded-br-2xl" />
 
-            {/* Status Badge */}
-            <motion.div 
-              className="inline-flex items-center gap-3 px-4 py-2 neural-card"
-              variants={slideIn}
+      <div className="w-full max-w-6xl mx-auto px-6 sm:px-10 lg:px-16 pt-24 pb-16 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+          {/* Left */}
+          <motion.div
+            initial={{ opacity: 0, y: 32 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+          >
+            <div className="flex items-center gap-4 mb-6">
+              <p className="section-eyebrow">// 01 — IDENTITY</p>
+              <div
+                className="flex items-center gap-1.5 px-3 py-1 rounded-full font-jetbrains text-xs"
+                style={{ background: 'rgba(139,232,168,0.08)', border: '1px solid rgba(139,232,168,0.2)', color: '#8be8a8' }}
+              >
+                <span
+                  className="w-1.5 h-1.5 rounded-full"
+                  style={{ background: '#8be8a8', animation: 'availDot 1.8s ease-in-out infinite' }}
+                />
+                Available
+              </div>
+            </div>
+
+            <p className="text-sm font-jetbrains mb-2" style={{ color: '#0284c7', letterSpacing: '0.06em' }}>
+              Hello, I'm
+            </p>
+
+            {/* Word-reveal name */}
+            <h1
+              className="font-fraunces font-light text-photon leading-none tracking-tight mb-4"
+              style={{ fontSize: 'clamp(48px, 7vw, 88px)', letterSpacing: '-0.03em' }}
             >
-              <div className="relative">
-                <div className="w-2 h-2 bg-electric rounded-full animate-pulse" />
-                <div className="absolute inset-0 w-2 h-2 bg-electric rounded-full animate-ping" />
-              </div>
-            </motion.div>
-
-            {/* Main Title */}
-            <motion.div className="space-y-3 lg:space-y-4 my-6 lg:my-8" variants={slideIn}>
-              <p className="text-sm sm:text-base font-medium text-electric tracking-wide">
-                Hello, I'm
-              </p>
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gradient leading-tight">
-                {name}
-              </h1>
-              <h2 className="text-lg sm:text-xl font-semibold bg-gradient-to-r from-quantum to-circuit bg-clip-text text-transparent tracking-wide">
-                Prev - SWE Intern at KLA | ML Enthusiast
-              </h2>
-            </motion.div>
-
-            {/* Bio */}
-            <motion.div className="space-y-4 lg:space-y-6 my-4 lg:my-6" variants={fadeIn}>
-              <div className="relative">
-                <div className="absolute -inset-1 bg-gradient-to-r from-electric via-quantum to-circuit opacity-20 blur rounded-xl" />
-                <p className="relative text-sm sm:text-base lg:text-lg text-photon leading-relaxed p-4 sm:p-5 lg:p-6 neural-card">
-                  Applied Data Intelligence Graduate Student at San Jose State University with a passion for AI/ML and 
-                  full-stack development. I love building data-driven solutions that make a real impact.
-                </p>
-              </div>
-              
-              {/* Skills Cards */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6 mt-6 lg:mt-8">
-                {[
-                  {
-                    title: "Data & AI",
-                    icon: <Database />,
-                    skills: ["Machine Learning", "Analytics", "LLMs", "Computer Vision"],
-                    gradient: "from-electric to-quantum",
-                    textColor: "text-electric"
-                  },
-                  {
-                    title: "Development",
-                    icon: <Code />,
-                    skills: ["Full Stack", "Cloud Architecture", "MLOps", "System Design"],
-                    gradient: "from-quantum to-circuit",
-                    textColor: "text-quantum"
-                  },
-                  {
-                    title: "Engineering",
-                    icon: <Cpu />,
-                    skills: ["Data Pipelines", "APIs", "Distributed Systems", "DevOps"],
-                    gradient: "from-circuit to-neural",
-                    textColor: "text-circuit"
-                  }
-                ].map((skill, index) => (
-                  <motion.div
-                    key={index}
-                    className="group"
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              <motion.span
+                className="flex flex-wrap"
+                variants={wordContainer}
+                initial="hidden"
+                animate="visible"
+              >
+                {nameWords.map((word, i) => (
+                  <span
+                    key={i}
+                    style={{ overflow: 'hidden', display: 'inline-block', marginRight: '0.25em' }}
                   >
-                    <div className="neural-card relative overflow-hidden backdrop-blur-sm h-full">
-                      {/* Gradient Border Effect */}
-                      <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 transition-all duration-500 ease-out"
-                           style={{ 
-                             background: `linear-gradient(135deg, rgba(0, 144, 255, 0.1), rgba(123, 92, 214, 0.1), rgba(255, 149, 0, 0.1))`,
-                             filter: 'blur(8px)'
-                           }} 
-                      />
-
-                      {/* Content */}
-                      <div className="relative z-10 p-3 sm:p-4 lg:p-5">
-                        {/* Icon */}
-                        <div className={`w-10 h-10 sm:w-12 sm:h-12 lg:w-14 lg:h-14 neural-card rounded-xl bg-gradient-to-br ${skill.gradient} 
-                                       flex items-center justify-center mb-3 sm:mb-4 mx-auto transform group-hover:scale-110 
-                                       group-hover:rotate-6 transition-all duration-300 shadow-lg`}>
-                          <div className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 text-white">
-                            {skill.icon}
-                          </div>
-                        </div>
-
-                        {/* Title */}
-                        <h3 className={`text-sm sm:text-base lg:text-lg font-bold ${skill.textColor} text-center mb-3 sm:mb-4 
-                                      tracking-wide group-hover:scale-105 transition-transform duration-300`}>
-                          {skill.title}
-                        </h3>
-
-                        {/* Skills List */}
-                        <div className="space-y-2 sm:space-y-3 flex flex-col items-start pl-4 sm:pl-5">
-                          {skill.skills.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-2 sm:gap-3 w-full">
-                              <div className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-gradient-to-r ${skill.gradient} flex-shrink-0`} />
-                              <span className="text-xs sm:text-sm lg:text-base text-chip group-hover:text-photon transition-colors duration-300">
-                                {item}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
+                    <motion.span style={{ display: 'inline-block' }} variants={wordChild}>
+                      {word}
+                    </motion.span>
+                  </span>
                 ))}
-              </div>
-            </motion.div>
+              </motion.span>
+            </h1>
 
-            {/* CTA Buttons */}
-            <motion.div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mt-6 lg:mt-8" variants={fadeIn}>
-              <a 
-                href="#work" 
-                className="quantum-button inline-flex items-center justify-center gap-2"
+            {/* Typewriter role */}
+            <h2
+              className="font-inter font-semibold mb-6 min-h-[1.6em]"
+              style={{
+                fontSize: 'clamp(14px, 1.8vw, 18px)',
+                background: 'linear-gradient(90deg, #7c3aed, #c2600a)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+              }}
+            >
+              {typed}
+              <span
+                className="inline-block w-0.5 h-[1em] ml-0.5 align-middle animate-pulse"
+                style={{ background: '#7c3aed', verticalAlign: 'middle' }}
+              />
+            </h2>
+
+            <p
+              className="text-base leading-relaxed mb-8 max-w-lg"
+              style={{ color: 'rgba(28,27,46,0.65)', lineHeight: 1.8 }}
+            >
+              Graduate student at San Jose State University building data-driven systems at the intersection
+              of applied ML and full-stack engineering. I care about the work that ships and stays used.
+            </p>
+
+            {/* CTA row */}
+            <div className="flex flex-wrap gap-4 mb-10">
+              <a
+                href="#work"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                style={{ background: '#1c1b2e', color: '#ffffff', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', letterSpacing: '0.08em' }}
+                onMouseEnter={e => e.currentTarget.style.background = '#2d2c40'}
+                onMouseLeave={e => e.currentTarget.style.background = '#1c1b2e'}
               >
                 View My Work
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                <ArrowRight className="w-4 h-4" />
               </a>
-              {mailto ? (
-                <a 
-                  href={mailto} 
-                  className="circuit-link inline-flex items-center justify-center gap-2"
+              {mailto && (
+                <a
+                  href={mailto}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                  style={{
+                    background: 'transparent', color: '#1c1b2e',
+                    border: '1px solid rgba(28,27,46,0.3)',
+                    fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', letterSpacing: '0.08em',
+                  }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(28,27,46,0.06)'; e.currentTarget.style.borderColor = '#1c1b2e'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.3)'; }}
                 >
                   <Mail className="w-4 h-4" />
                   Contact Me
                 </a>
-              ) : null}
-            </motion.div>
-          </div>
-        </motion.div>
-
-        {/* Right Section - Full width on mobile, 45% on desktop */}
-        <motion.div 
-          className="w-full lg:w-[40%] xl:w-[45%] min-h-[40vh] lg:h-full flex flex-col items-center justify-center p-3 sm:p-4 lg:p-6 border-t lg:border-t-0 lg:border-l border-electric/10 mt-8 lg:mt-0"
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
-        >
-          {/* Profile Visual */}
-          <div className="relative">
-            <div className="w-64 h-64 sm:w-80 sm:h-80 lg:w-96 lg:h-96 relative">
-              {/* Animated Rings */}
-              <div className="absolute inset-0 rounded-full border-2 border-electric/30 animate-spin" style={{ animationDuration: '10s' }} />
-              <div className="absolute inset-4 rounded-full border border-quantum/20 animate-spin" style={{ animationDuration: '15s', animationDirection: 'reverse' }} />
-              <div className="absolute inset-8 rounded-full border border-circuit/20 animate-spin" style={{ animationDuration: '20s' }} />
-              
-              {/* Center Content */}
-              <div className="absolute inset-16 neural-card rounded-full flex items-center justify-center overflow-hidden">
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-electric via-quantum to-circuit opacity-20"
-                  style={{
-                    animation: 'gradient-rotate 8s linear infinite',
-                    backgroundSize: '200% 200%'
-                  }}
-                />
-                <motion.div 
-                  className="text-center space-y-3 relative z-10"
-                  animate={{
-                    scale: [1, 1.05, 1],
-                    rotate: [0, 5, -5, 0]
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut"
-                  }}
-                >
-                  <motion.div 
-                    className="text-4xl lg:text-6xl"
-                    animate={{ 
-                      y: [-2, 2, -2],
-                      rotate: [-5, 5, -5]
-                    }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      ease: "easeInOut"
-                    }}
-                  >
-                    🚀
-                  </motion.div>
-                  <motion.div 
-                    className="text-sm lg:text-base font-bold bg-gradient-to-r from-electric via-quantum to-circuit bg-clip-text text-transparent"
-                    style={{
-                      backgroundSize: '200% 200%',
-                      animation: 'gradient-text 3s linear infinite'
-                    }}
-                  >
-                    Building the Future
-                  </motion.div>
-                </motion.div>
-              </div>
+              )}
             </div>
-          </div>
 
-          {/* Social Links */}
-          <div className="flex items-center gap-4 lg:gap-6 mt-8">
-            {githubUrl ? (
-              <motion.a 
-                href={githubUrl} 
-                className="tech-badge p-3 lg:p-4"
-                whileHover={{ scale: 1.1, y: -5 }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Github className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-electric transition-colors duration-300" />
-              </motion.a>
-            ) : null}
-            
-            {linkedinUrl ? (
-              <motion.a 
-                href={linkedinUrl} 
-                className="tech-badge p-3 lg:p-4"
-                whileHover={{ scale: 1.1, y: -5 }}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Linkedin className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-quantum transition-colors duration-300" />
-              </motion.a>
-            ) : null}
-            
-            {mailto ? (
-              <motion.a 
-                href={mailto} 
-                className="tech-badge p-3 lg:p-4"
-                whileHover={{ scale: 1.1, y: -5 }}
-              >
-                <Mail className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-circuit transition-colors duration-300" />
-              </motion.a>
-            ) : null}
-            
-            <motion.a 
-              href={resumeUrl} 
-              className="tech-badge p-3 lg:p-4"
-              whileHover={{ scale: 1.1, y: -5 }}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <FileText className="w-5 h-5 lg:w-6 lg:h-6 text-photon group-hover:text-electric transition-colors duration-300" />
-            </motion.a>
-          </div>
-
-          {/* Scroll Indicator */}
-          <motion.div 
-            className="hidden lg:flex flex-col items-center space-y-2 mt-8"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-          >
-            <div className="text-xs text-chip font-medium">Scroll to explore</div>
-            <div className="w-px h-8 bg-gradient-to-b from-electric to-transparent" />
+            {/* Social icons */}
+            <div className="flex items-center gap-3">
+              {socialLinks.map((item, i) => (
+                <motion.a
+                  key={i}
+                  href={item.href}
+                  target={item.target || '_blank'}
+                  rel="noopener noreferrer"
+                  aria-label={item.label}
+                  className="p-2.5 rounded-lg transition-all duration-200"
+                  style={{ color: 'rgba(28,27,46,0.38)', border: '1px solid rgba(28,27,46,0.1)' }}
+                  whileHover={{ scale: 1.1, y: -3 }}
+                  onMouseEnter={e => { e.currentTarget.style.color = '#0284c7'; e.currentTarget.style.borderColor = 'rgba(2,132,199,0.3)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.38)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.1)'; }}
+                >
+                  {item.icon}
+                </motion.a>
+              ))}
+            </div>
           </motion.div>
+
+          {/* Right — pillar cards */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
+            className="flex flex-col gap-4"
+          >
+            {pillars.map((pillar, i) => (
+              <motion.div
+                key={i}
+                className="neural-card p-5"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
+                style={{ borderLeft: `2px solid ${['#0284c7','#7c3aed','#c2600a'][i]}33` }}
+              >
+                <p
+                  className="font-jetbrains text-xs mb-3 tracking-widest"
+                  style={{ color: ['#0284c7','#7c3aed','#c2600a'][i] }}
+                >
+                  0{i + 1} — {pillar.label.toUpperCase()}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {pillar.items.map((item, j) => (
+                    <span key={j} className="tech-badge">{item}</span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+
+        {/* Scroll hint */}
+        <motion.div
+          className="hidden lg:flex flex-col items-center gap-2 mt-12"
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
+        >
+          <span className="font-jetbrains text-xs tracking-widest" style={{ color: 'rgba(28,27,46,0.35)' }}>
+            scroll
+          </span>
+          <div className="w-px h-10" style={{ background: 'linear-gradient(to bottom, #0284c7, transparent)' }} />
         </motion.div>
       </div>
     </div>
   );
-};
-
-export default Home;
+}
