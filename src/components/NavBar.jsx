@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FaHome, FaBriefcase, FaCode, FaProjectDiagram, FaCertificate, FaLinkedin, FaGithub, FaEnvelope, FaBars, FaTimes } from 'react-icons/fa';
 import SITE from '../config/site';
 
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const reduceMotion = useReducedMotion();
   const name = SITE.name;
   const email = SITE.email;
   const mailto = email ? `mailto:${email}` : '';
@@ -71,13 +72,13 @@ const Navbar = () => {
                 key={item.name}
                 href={`#${item.name}`}
                 className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm transition-all duration-200"
-                style={{ color: 'rgba(28,27,46,0.55)', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px' }}
-                whileHover={{ scale: 1.03 }}
+                style={{ color: 'rgba(28,27,46,0.62)', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px' }}
+                whileHover={reduceMotion ? {} : { scale: 1.03, y: -1 }}
                 onMouseEnter={e => e.currentTarget.style.color = '#0284c7'}
-                onMouseLeave={e => e.currentTarget.style.color = 'rgba(28,27,46,0.55)'}
+                onMouseLeave={e => e.currentTarget.style.color = 'rgba(28,27,46,0.62)'}
                 initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.07 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 24, delay: index * 0.07 }}
               >
                 {item.icon}
                 <span>{item.label}</span>
@@ -100,10 +101,12 @@ const Navbar = () => {
                 rel="noopener noreferrer"
                 aria-label={item.label}
                 className="p-2 rounded-lg transition-all duration-200"
-                style={{ color: 'rgba(28,27,46,0.42)', border: '1px solid rgba(28,27,46,0.1)' }}
-                whileHover={{ scale: 1.1 }}
+                style={{ color: 'rgba(28,27,46,0.55)', border: '1px solid rgba(28,27,46,0.1)' }}
+                whileHover={reduceMotion ? {} : { scale: 1.1, y: -2 }}
+                whileTap={reduceMotion ? {} : { scale: 0.94 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                 onMouseEnter={e => { e.currentTarget.style.color = '#0284c7'; e.currentTarget.style.borderColor = 'rgba(2,132,199,0.3)'; }}
-                onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.42)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.1)'; }}
+                onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.55)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.1)'; }}
               >
                 {item.icon}
               </motion.a>

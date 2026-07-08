@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import {
   FaCode, FaDatabase, FaCloud, FaTools, FaBrain, FaStream, FaChartBar,
   FaPython, FaReact, FaAws, FaDocker, FaGitAlt, FaNodeJs,
@@ -13,6 +13,7 @@ import {
 const Skills = () => {
   const [activeView, setActiveView] = useState('overview');
   const [hoveredCategory, setHoveredCategory] = useState(null);
+  const reduceMotion = useReducedMotion();
 
   const coreCompetencies = [
     {
@@ -194,7 +195,7 @@ const Skills = () => {
                 >
                   {stat.value}
                 </div>
-                <div className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.42)' }}>
+                <div className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.58)' }}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -234,12 +235,12 @@ const Skills = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.03 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 22, delay: index * 0.1 }}
+                whileHover={reduceMotion ? {} : { scale: 1.03, y: -4 }}
                 onHoverStart={() => setHoveredCategory(index)}
                 onHoverEnd={() => setHoveredCategory(null)}
                 className="neural-card p-6"
-                style={{ borderLeft: `2px solid ${cat.accent}33` }}
+                style={{ borderLeft: `2px solid ${cat.accent}33`, willChange: 'transform' }}
               >
                 <div className="mb-4" style={{ color: cat.accent }}>
                   {cat.icon}
@@ -249,7 +250,7 @@ const Skills = () => {
                 {/* Proficiency bar */}
                 <div className="mb-4">
                   <div className="flex justify-between font-jetbrains text-xs mb-1"
-                    style={{ color: 'rgba(28,27,46,0.42)' }}>
+                    style={{ color: 'rgba(28,27,46,0.58)' }}>
                     <span>Proficiency</span>
                     <span>{cat.proficiency}%</span>
                   </div>
@@ -298,7 +299,7 @@ const Skills = () => {
               >
                 <h3 className="font-fraunces font-semibold text-photon text-xl mb-5 flex items-center gap-3">
                   <span style={{ color: cat.accent }}>{cat.title}</span>
-                  <span className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.35)' }}>
+                  <span className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.5)' }}>
                     {cat.techs.length} technologies
                   </span>
                 </h3>
@@ -307,7 +308,8 @@ const Skills = () => {
                   {cat.techs.map((tech, idx) => (
                     <motion.div
                       key={idx}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={reduceMotion ? {} : { scale: 1.05, y: -3 }}
+                      transition={{ type: 'spring', stiffness: 300, damping: 22 }}
                       className="p-4 rounded-xl text-center transition-all duration-200"
                       style={{ background: 'rgba(28,27,46,0.04)', border: '1px solid rgba(28,27,46,0.08)' }}
                       onMouseEnter={e => { e.currentTarget.style.borderColor = `${cat.accent}44`; }}
@@ -315,7 +317,7 @@ const Skills = () => {
                     >
                       <div className="text-xl mb-2" style={{ color: cat.accent }}>{tech.icon}</div>
                       <div className="font-jetbrains text-xs text-photon mb-1">{tech.name}</div>
-                      <div className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.35)' }}>{tech.years}</div>
+                      <div className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.5)' }}>{tech.years}</div>
                     </motion.div>
                   ))}
                 </div>

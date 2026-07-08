@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { FaTrophy, FaMedal, FaBook, FaBullseye, FaTimes, FaEye, FaEnvelope, FaLinkedin } from 'react-icons/fa';
 import cert1 from '../assests/cert1.jpg';
 import cert2 from '../assests/cert2.jpg';
@@ -42,6 +42,7 @@ const certificatesData = [
 
 const Certificates = () => {
   const [selectedCert, setSelectedCert] = useState(null);
+  const reduceMotion = useReducedMotion();
   const email       = SITE.email;
   const mailto      = email ? `mailto:${email}` : '';
   const linkedinUrl = SITE.linkedinUrl;
@@ -82,26 +83,29 @@ const Certificates = () => {
         </motion.div>
 
         {/* Certificates grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-60px' }}
+          variants={{ hidden: {}, visible: { transition: { staggerChildren: 0.1 } } }}
+        >
           {certificatesData.map((cert, index) => (
             <motion.div
               key={index}
               className="group cursor-pointer overflow-hidden rounded-xl"
-              style={{ background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(28,27,46,0.08)', transition: 'border-color 0.3s, box-shadow 0.3s, transform 0.3s' }}
-              whileInView={{ opacity: 1 }}
-              initial={{ opacity: 0, y: 24 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
+              style={{ background: 'rgba(255,255,255,0.9)', border: '1px solid rgba(28,27,46,0.08)', transition: 'border-color 0.3s, box-shadow 0.3s', willChange: 'transform' }}
+              variants={reduceMotion ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }}
+              whileHover={reduceMotion ? {} : { y: -6 }}
+              transition={{ type: 'spring', stiffness: 260, damping: 22 }}
               onClick={() => setSelectedCert(cert)}
               onMouseEnter={e => {
                 e.currentTarget.style.borderColor = 'rgba(2,132,199,0.25)';
                 e.currentTarget.style.boxShadow   = '0 0 28px rgba(2,132,199,0.08)';
-                e.currentTarget.style.transform   = 'translateY(-4px)';
               }}
               onMouseLeave={e => {
                 e.currentTarget.style.borderColor = 'rgba(28,27,46,0.08)';
                 e.currentTarget.style.boxShadow   = 'none';
-                e.currentTarget.style.transform   = 'translateY(0)';
               }}
             >
               {/* Image */}
@@ -152,7 +156,7 @@ const Certificates = () => {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {/* Achievement summary */}
         <motion.div
@@ -164,7 +168,7 @@ const Certificates = () => {
         >
           <div className="text-center mb-8">
             <h3 className="font-fraunces font-light text-photon text-2xl mb-2">Achievement Summary</h3>
-            <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.42)' }}>
+            <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.55)' }}>
               A snapshot of academic accomplishments
             </p>
           </div>
@@ -191,7 +195,7 @@ const Certificates = () => {
                 >
                   {stat.count}
                 </div>
-                <div className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.42)' }}>
+                <div className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.55)' }}>
                   {stat.label}
                 </div>
               </motion.div>
@@ -279,9 +283,9 @@ const Certificates = () => {
                   <button
                     onClick={() => setSelectedCert(null)}
                     className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all"
-                    style={{ color: 'rgba(28,27,46,0.42)', border: '1px solid rgba(28,27,46,0.08)' }}
+                    style={{ color: 'rgba(28,27,46,0.55)', border: '1px solid rgba(28,27,46,0.08)' }}
                     onMouseEnter={e => { e.currentTarget.style.color = '#0284c7'; e.currentTarget.style.borderColor = 'rgba(2,132,199,0.3)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.42)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.08)'; }}
+                    onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.55)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.08)'; }}
                   >
                     <FaTimes size={12} />
                   </button>

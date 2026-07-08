@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, useReducedMotion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowRight } from 'lucide-react';
 import SITE from '../config/site';
 
@@ -37,6 +37,7 @@ const wordChild = {
 };
 
 export default function Home() {
+  const reduceMotion = useReducedMotion();
   const name        = SITE.name      || 'Prem Shah';
   const email       = SITE.email;
   const mailto      = email ? `mailto:${email}` : '';
@@ -181,46 +182,65 @@ export default function Home() {
               />
             </h2>
 
-            <p
+            <motion.p
               className="text-base leading-relaxed mb-8 max-w-lg"
-              style={{ color: 'rgba(28,27,46,0.65)', lineHeight: 1.8 }}
+              style={{ color: 'rgba(28,27,46,0.72)', lineHeight: 1.8 }}
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.5 }}
             >
               Graduate student at San Jose State University building data-driven systems at the intersection
               of applied ML and full-stack engineering. I care about the work that ships and stays used.
-            </p>
+            </motion.p>
 
             {/* CTA row */}
-            <div className="flex flex-wrap gap-4 mb-10">
-              <a
+            <motion.div
+              className="flex flex-wrap gap-4 mb-10"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.65 }}
+            >
+              <motion.a
                 href="#work"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium"
                 style={{ background: '#1c1b2e', color: '#ffffff', fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', letterSpacing: '0.08em' }}
+                whileHover={reduceMotion ? {} : { scale: 1.03, y: -2 }}
+                whileTap={reduceMotion ? {} : { scale: 0.97 }}
+                transition={{ type: 'spring', stiffness: 350, damping: 20 }}
                 onMouseEnter={e => e.currentTarget.style.background = '#2d2c40'}
                 onMouseLeave={e => e.currentTarget.style.background = '#1c1b2e'}
               >
                 View My Work
                 <ArrowRight className="w-4 h-4" />
-              </a>
+              </motion.a>
               {mailto && (
-                <a
+                <motion.a
                   href={mailto}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-medium"
                   style={{
                     background: 'transparent', color: '#1c1b2e',
                     border: '1px solid rgba(28,27,46,0.3)',
                     fontFamily: 'JetBrains Mono, monospace', fontSize: '13px', letterSpacing: '0.08em',
                   }}
+                  whileHover={reduceMotion ? {} : { scale: 1.03, y: -2 }}
+                  whileTap={reduceMotion ? {} : { scale: 0.97 }}
+                  transition={{ type: 'spring', stiffness: 350, damping: 20 }}
                   onMouseEnter={e => { e.currentTarget.style.background = 'rgba(28,27,46,0.06)'; e.currentTarget.style.borderColor = '#1c1b2e'; }}
                   onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.3)'; }}
                 >
                   <Mail className="w-4 h-4" />
                   Contact Me
-                </a>
+                </motion.a>
               )}
-            </div>
+            </motion.div>
 
             {/* Social icons */}
-            <div className="flex items-center gap-3">
+            <motion.div
+              className="flex items-center gap-3"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.78 }}
+            >
               {socialLinks.map((item, i) => (
                 <motion.a
                   key={i}
@@ -229,15 +249,16 @@ export default function Home() {
                   rel="noopener noreferrer"
                   aria-label={item.label}
                   className="p-2.5 rounded-lg transition-all duration-200"
-                  style={{ color: 'rgba(28,27,46,0.38)', border: '1px solid rgba(28,27,46,0.1)' }}
-                  whileHover={{ scale: 1.1, y: -3 }}
+                  style={{ color: 'rgba(28,27,46,0.5)', border: '1px solid rgba(28,27,46,0.1)' }}
+                  whileHover={reduceMotion ? {} : { scale: 1.1, y: -3 }}
+                  transition={{ type: 'spring', stiffness: 400, damping: 20 }}
                   onMouseEnter={e => { e.currentTarget.style.color = '#0284c7'; e.currentTarget.style.borderColor = 'rgba(2,132,199,0.3)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.38)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.1)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.5)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.1)'; }}
                 >
                   {item.icon}
                 </motion.a>
               ))}
-            </div>
+            </motion.div>
           </motion.div>
 
           {/* Right — pillar cards */}
@@ -253,8 +274,9 @@ export default function Home() {
                 className="neural-card p-5"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 + i * 0.1 }}
-                style={{ borderLeft: `2px solid ${['#0284c7','#7c3aed','#c2600a'][i]}33` }}
+                whileHover={reduceMotion ? {} : { scale: 1.02, y: -3 }}
+                transition={{ type: 'spring', stiffness: 260, damping: 22, delay: 0.2 + i * 0.1 }}
+                style={{ borderLeft: `2px solid ${['#0284c7','#7c3aed','#c2600a'][i]}33`, willChange: 'transform' }}
               >
                 <p
                   className="font-jetbrains text-xs mb-3 tracking-widest"

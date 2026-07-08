@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { FaBriefcase, FaCalendarAlt, FaMapMarkerAlt, FaCode, FaGraduationCap, FaLaptopCode, FaRocket, FaLocationArrow } from 'react-icons/fa';
 
 const experiencesData = [
@@ -61,6 +61,7 @@ const itemVariants = {
 };
 
 const Experience = () => {
+  const reduceMotion = useReducedMotion();
   return (
     <div id="experience" className="min-h-screen relative py-20 px-4 sm:px-6 lg:px-8" style={{ background: 'rgba(246,243,238,0.88)' }}>
       <div className="absolute inset-0 bg-neural-grid opacity-30 pointer-events-none"></div>
@@ -98,7 +99,7 @@ const Experience = () => {
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: '-80px' }}
-                variants={itemVariants}
+                variants={reduceMotion ? { hidden: { opacity: 0 }, visible: { opacity: 1 } } : itemVariants}
               >
                 {/* Timeline node */}
                 <div
@@ -118,11 +119,13 @@ const Experience = () => {
                 </div>
 
                 {/* Card */}
-                <div
+                <motion.div
                   className={`neural-card p-6 w-full md:w-5/12 ml-14 md:ml-0 ${
                     index % 2 === 0 ? 'md:mr-auto' : 'md:ml-auto'
                   }`}
-                  style={{ borderLeft: '2px solid rgba(108,212,255,0.2)' }}
+                  style={{ borderLeft: '2px solid rgba(108,212,255,0.2)', willChange: 'transform' }}
+                  whileHover={reduceMotion ? {} : { y: -4, scale: 1.01 }}
+                  transition={{ type: 'spring', stiffness: 260, damping: 24 }}
                 >
                   {/* Company header */}
                   <div className="flex items-center gap-3 mb-4">
@@ -178,7 +181,7 @@ const Experience = () => {
                       </span>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -210,7 +213,7 @@ const Experience = () => {
                   <div>
                     <h4 className="font-semibold text-electric mb-1">Master's in Applied Data Intelligence</h4>
                     <p className="text-quantum text-sm">San Jose State University</p>
-                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>August 2024 – May 2026</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.55)' }}>August 2024 – May 2026</p>
                   </div>
                 </div>
 
@@ -225,7 +228,7 @@ const Experience = () => {
                   <div>
                     <h4 className="font-semibold text-electric mb-1">B.Tech — Computer Engineering</h4>
                     <p className="text-quantum text-sm">CHARUSAT University</p>
-                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>2020 – 2024</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.55)' }}>2020 – 2024</p>
                   </div>
                 </div>
               </div>
@@ -244,7 +247,7 @@ const Experience = () => {
                   <div>
                     <h4 className="font-semibold text-electric mb-1">Career Focus</h4>
                     <p className="text-quantum text-sm">Software / Data / ML Engineering</p>
-                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>Full-time · Summer 2026</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.55)' }}>Full-time · Summer 2026</p>
                   </div>
                 </div>
 
@@ -259,7 +262,7 @@ const Experience = () => {
                   <div>
                     <h4 className="font-semibold text-electric mb-1">Location</h4>
                     <p className="text-quantum text-sm">San Jose, CA</p>
-                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.42)' }}>Open to relocation · US-authorized</p>
+                    <p className="text-xs font-jetbrains" style={{ color: 'rgba(28,27,46,0.55)' }}>Open to relocation · US-authorized</p>
                   </div>
                 </div>
               </div>

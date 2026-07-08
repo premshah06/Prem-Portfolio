@@ -1,9 +1,10 @@
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import { FaLinkedin, FaGithub, FaEnvelope, FaMapMarkerAlt, FaGraduationCap, FaArrowUp } from 'react-icons/fa';
 import SITE from '../config/site';
 
 const Footer = () => {
+  const reduceMotion = useReducedMotion();
   const name       = SITE.name       || 'Prem Shah';
   const email      = SITE.email;
   const mailto     = email ? `mailto:${email}` : '';
@@ -43,7 +44,7 @@ const Footer = () => {
               </div>
               <div>
                 <h3 className="font-fraunces font-semibold text-photon text-base">{name}</h3>
-                <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.42)' }}>{role}</p>
+                <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.58)' }}>{role}</p>
               </div>
             </div>
 
@@ -60,10 +61,10 @@ const Footer = () => {
                   rel="noopener noreferrer"
                   aria-label={item.label}
                   className="p-2 rounded-lg transition-all duration-200"
-                  style={{ color: 'rgba(28,27,46,0.42)', border: '1px solid rgba(28,27,46,0.08)' }}
+                  style={{ color: 'rgba(28,27,46,0.55)', border: '1px solid rgba(28,27,46,0.08)' }}
                   whileHover={{ scale: 1.1 }}
                   onMouseEnter={e => { e.currentTarget.style.color = '#0284c7'; e.currentTarget.style.borderColor = 'rgba(2,132,199,0.3)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.42)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.08)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.color = 'rgba(28,27,46,0.55)'; e.currentTarget.style.borderColor = 'rgba(28,27,46,0.08)'; }}
                 >
                   {item.icon}
                 </motion.a>
@@ -73,7 +74,7 @@ const Footer = () => {
 
           {/* Quick links */}
           <div>
-            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.42)' }}>
+            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.55)' }}>
               Quick Links
             </h4>
             <ul className="space-y-2">
@@ -96,7 +97,7 @@ const Footer = () => {
 
           {/* Contact */}
           <div>
-            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.42)' }}>
+            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.55)' }}>
               Get In Touch
             </h4>
             <div className="space-y-3">
@@ -113,13 +114,13 @@ const Footer = () => {
                 </a>
               )}
               {location && (
-                <div className="flex items-center gap-3 text-sm" style={{ color: 'rgba(28,27,46,0.42)' }}>
+                <div className="flex items-center gap-3 text-sm" style={{ color: 'rgba(28,27,46,0.55)' }}>
                   <FaMapMarkerAlt className="w-4 h-4 flex-shrink-0 text-circuit" />
                   <span>{location}</span>
                 </div>
               )}
               {school && (
-                <div className="flex items-center gap-3 text-sm" style={{ color: 'rgba(28,27,46,0.42)' }}>
+                <div className="flex items-center gap-3 text-sm" style={{ color: 'rgba(28,27,46,0.55)' }}>
                   <FaGraduationCap className="w-4 h-4 flex-shrink-0 text-quantum" />
                   <span>{school}</span>
                 </div>
@@ -129,7 +130,7 @@ const Footer = () => {
 
           {/* Status */}
           <div>
-            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.42)' }}>
+            <h4 className="font-jetbrains text-xs uppercase tracking-widest mb-5" style={{ color: 'rgba(28,27,46,0.55)' }}>
               Status
             </h4>
             <div
@@ -152,10 +153,10 @@ const Footer = () => {
           className="flex flex-col sm:flex-row justify-between items-center gap-4 pt-8"
           style={{ borderTop: '1px solid rgba(28,27,46,0.06)' }}
         >
-          <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.3)' }}>
+          <p className="font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.45)' }}>
             © {new Date().getFullYear()} {name}. Built with React · Tailwind · Framer Motion.
           </p>
-          <div className="flex items-center gap-2 font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.3)' }}>
+          <div className="flex items-center gap-2 font-jetbrains text-xs" style={{ color: 'rgba(28,27,46,0.45)' }}>
             <span>San Jose, CA</span>
             <span>·</span>
             <span>Made with intention</span>
@@ -168,8 +169,9 @@ const Footer = () => {
         onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         className="fixed bottom-8 right-8 w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 z-50"
         style={{ background: 'rgba(2,132,199,0.1)', border: '1px solid rgba(2,132,199,0.25)', color: '#0284c7' }}
-        whileHover={{ scale: 1.1, boxShadow: '0 0 20px rgba(2,132,199,0.3)' }}
-        whileTap={{ scale: 0.9 }}
+        whileHover={reduceMotion ? {} : { scale: 1.1, boxShadow: '0 0 20px rgba(2,132,199,0.3)' }}
+        whileTap={reduceMotion ? {} : { scale: 0.9 }}
+        transition={{ type: 'spring', stiffness: 400, damping: 20 }}
         aria-label="Scroll to top"
       >
         <FaArrowUp className="w-4 h-4" />

@@ -14,12 +14,17 @@ import {
   HeartDiagram,
   BloodDonationDiagram,
   TextHidderDiagram,
+  DeployPulseDiagram,
+  PayGuardDiagram,
+  PulseCoreDiagram,
+  NeuroDriveDiagram,
 } from './diagrams';
 
 export const data = [
   /* ── AI / Multi-agent projects ───────────────────────────── */
   {
     id: 20,
+    featured: true,
     name: "EchoGraph",
     diagram: EchoGraphDiagram,
     accent: '#7c3aed',
@@ -78,6 +83,55 @@ export const data = [
     description: "High-performance vector similarity search engine written in C++17 with Python bindings via pybind11. Implements three indexing algorithms — Brute Force, KD-Tree, and HNSW — with thread-safe concurrent access via shared_mutex, automatic embedding generation through sentence-transformers and ONNX Runtime, binary persistence, and both a FastAPI REST interface and CLI.",
     skills: ["C++17", "pybind11", "Python", "HNSW", "FastAPI", "ONNX Runtime", "sentence-transformers", "CMake"],
     type: "Systems / DB",
+  },
+
+  /* ── Streaming / Platform engineering projects ───────────── */
+  {
+    id: 26,
+    featured: true,
+    name: "DeployPulse",
+    diagram: DeployPulseDiagram,
+    accent: '#0284c7',
+    github: "https://github.com/premshah06/DeployPulse",
+    description: "Self-hosted deployment tracking platform giving engineering teams real-time visibility into what version runs where and whether a rollout is safe to continue. CI/CD webhooks flow through Kafka (KRaft) into a stream processor that drives a deployment state machine, writing history to PostgreSQL and live state to Redis. An ONNX IsolationForest model flags anomalous deployments by duration, hour-of-day, and day-of-week, alerting Slack automatically — with Socket.io pushing live state to a React dashboard every 2 seconds and Prometheus + Grafana observability across all 7 services.",
+    skills: ["Kafka", "FastAPI", "PostgreSQL", "Redis", "ONNX", "Socket.io", "React", "Zustand", "Prometheus", "Grafana", "Docker"],
+    type: "Platform Engineering",
+    metrics: [
+      { value: "7", label: "services orchestrated" },
+      { value: "2s", label: "live state push" },
+      { value: "ONNX", label: "anomaly inference" },
+    ],
+  },
+  {
+    id: 27,
+    featured: true,
+    name: "PayGuard",
+    diagram: PayGuardDiagram,
+    accent: '#c2600a',
+    github: "https://github.com/premshah06/PayGuard",
+    description: "Production-grade streaming fraud detection: transactions flow through Apache Kafka, get feature-engineered across 7 behavioural signals, and are ONNX-scored end-to-end in under 50ms. Detects five real-world fraud patterns — velocity spikes, geo-impossible travel, amount anomalies, odd-hour transactions, and round-number structuring — with 100% precision per pattern using an unsupervised IsolationForest that needs no labelled data. Every score lands in a PostgreSQL audit trail and surfaces on a cinematic React dashboard with live WebSocket alerts and a Recharts score histogram.",
+    skills: ["Kafka", "aiokafka", "ONNX", "FastAPI", "PostgreSQL", "asyncpg", "WebSocket", "React", "Recharts", "Docker"],
+    type: "Streaming ML",
+    metrics: [
+      { value: "<50ms", label: "end-to-end scoring" },
+      { value: "5", label: "fraud patterns" },
+      { value: "100%", label: "pattern precision" },
+    ],
+  },
+  {
+    id: 28,
+    name: "PulseCore",
+    diagram: PulseCoreDiagram,
+    accent: '#047857',
+    github: "https://github.com/premshah06/PulseCore",
+    description: "End-to-end streaming anomaly detection across three business domains — infrastructure, e-commerce, and IoT. Domain producers publish telemetry to a partitioned Kafka topic; an async consumer persists raw events to a 3-node MongoDB replica set and scores each event against a domain-specific IsolationForest model served by dedicated ONNX inference sidecars. Results broadcast over WebSocket to a Next.js dashboard with Framer Motion and Recharts — from event emit to screen render in under 200ms, across 12 Docker containers.",
+    skills: ["Kafka", "MongoDB", "ONNX", "FastAPI", "Next.js", "WebSocket", "Framer Motion", "Recharts", "Docker", "Python"],
+    type: "Streaming ML",
+    metrics: [
+      { value: "<200ms", label: "emit to render" },
+      { value: "12", label: "containers" },
+      { value: "3", label: "domain models" },
+    ],
   },
 
   /* ── Data & Analytics projects ───────────────────────────── */
@@ -152,6 +206,18 @@ export const data = [
     description: "Built predictive machine learning models for detecting heart disease and diabetes from patient data. Provides healthcare providers with actionable insights to identify at-risk individuals early, with an interactive Streamlit dashboard.",
     skills: ["Python", "Scikit-learn", "Power BI", "Streamlit"],
     type: "ML / Healthcare",
+  },
+
+  /* ── Creative / Interactive projects ─────────────────────── */
+  {
+    id: 29,
+    name: "NEURODRIVE",
+    diagram: NeuroDriveDiagram,
+    accent: '#7c3aed',
+    github: "https://github.com/premshah06/CarGame",
+    description: "A neon-drenched arcade lane racer built with zero dependencies — one HTML file, pure vanilla JavaScript, and the Canvas 2D API. A requestAnimationFrame game loop drives a 5-lane traffic system with a progressive difficulty curve, AABB collision detection, and a glow-gradient render pipeline with scrolling road and particles at 60fps. Fully playable on mobile with touch and swipe controls, safe-area insets, and a synthwave HUD.",
+    skills: ["JavaScript", "Canvas 2D", "HTML5", "Game Loop", "Touch Controls", "CSS3"],
+    type: "Game / Creative",
   },
 
   /* ── Mobile / Security projects ──────────────────────────── */
