@@ -189,7 +189,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
             >
-              Graduate student at San Jose State University building data-driven systems at the intersection
+              Graduate of San Jose State University building data-driven systems at the intersection
               of applied ML and full-stack engineering. I care about the work that ships and stays used.
             </motion.p>
 
