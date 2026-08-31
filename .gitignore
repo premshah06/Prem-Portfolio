@@ -29,6 +29,7 @@ CLAUDE.md
 # data files and folders
 data/
 **/data/
+!src/data/
 *.csv
 *.tsv
 *.jsonl

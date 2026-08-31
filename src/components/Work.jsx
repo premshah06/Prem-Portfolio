@@ -6,8 +6,8 @@ import SITE from '../config/site';
 
 /* ── Type → filter-bucket mapping (derived from actual `type` values) ── */
 const BUCKETS = {
-  'AI & Agents':        ['Edge AI', 'AI DevOps', 'Full Stack AI', 'Multi-Agent AI'],
-  'Data & Streaming':    ['Systems / DB', 'Streaming ML', 'Platform Engineering', 'Data Analytics', 'Data Engineering', 'Analytics', 'Data Analysis'],
+  'AI & Agents':        ['Edge AI', 'AI DevOps', 'Full Stack AI', 'Multi-Agent AI', 'Agent Infrastructure'],
+  'Data & Streaming':    ['Systems / DB', 'Streaming ML', 'Platform Engineering', 'Streaming Platform', 'Recommendation Systems', 'Data Analytics', 'Data Engineering', 'Analytics', 'Data Analysis'],
   'ML Apps':             ['AI Application', 'Computer Vision', 'ML / Healthcare'],
   'Mobile & Creative':   ['3D Web', 'Game / Creative', 'Mobile App', 'Security'],
 };

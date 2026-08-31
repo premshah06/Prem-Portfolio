@@ -1,5 +1,5 @@
 import {
-  EchoGraphDiagram,
+  GraphMediatorDiagram,
   EdgeMindDiagram,
   ExpertParkDiagram,
   IncidentDNADiagram,
@@ -18,6 +18,9 @@ import {
   PayGuardDiagram,
   PulseCoreDiagram,
   NeuroDriveDiagram,
+  RouteDNADiagram,
+  RankAPIDiagram,
+  AgentOpsDiagram,
 } from './diagrams';
 
 export const data = [
@@ -25,11 +28,11 @@ export const data = [
   {
     id: 20,
     featured: true,
-    name: "EchoGraph",
-    diagram: EchoGraphDiagram,
+    name: "GraphMediator AI",
+    diagram: GraphMediatorDiagram,
     accent: '#7c3aed',
-    github: "https://github.com/premshah06/echograph",
-    description: "A multi-agent living knowledge base built with LangGraph and FastAPI. Five specialized AI agents — Librarian, Philosopher, Critic, Synthesizer, and Scholar — ingest content, detect contradictions, synthesize higher-confidence knowledge, and answer questions with source citations. Features ChromaDB persistent vector storage, real-time WebSocket event streaming, and a Three.js + d3-force-3d 3D graph visualization frontend.",
+    github: "https://github.com/premshah06/GraphMediator-AI",
+    description: "A multi-agent living knowledge base built with LangGraph and FastAPI. Five specialized AI agents — Librarian, Philosopher, Critic, Synthesizer, and Scholar — ingest content, detect contradictions, synthesize higher-confidence knowledge, and answer questions with source citations. A multi-model cost router measured 94.9% cost savings vs. an unrouted gpt-4o baseline, every synthesized node carries a full provenance ledger, and an evaluation harness scores concept recall and confidence calibration against labeled fixtures. Features ChromaDB persistent vector storage, real-time WebSocket event streaming with token-level answer streaming, and a Three.js + d3-force-3d 3D graph visualization frontend.",
     skills: ["LangGraph", "FastAPI", "ChromaDB", "OpenAI", "WebSocket", "Three.js", "d3-force-3d", "Python", "Docker"],
     type: "Multi-Agent AI",
     stars: "48",
@@ -69,9 +72,9 @@ export const data = [
     name: "Expert Park",
     diagram: ExpertParkDiagram,
     accent: '#0284c7',
-    github: "https://github.com/premshah06/expert-park-3d",
-    description: "A 3D interactive park where AI expert NPCs stand in-world with floating domain labels and expandable expertise panels. Built entirely with vanilla JavaScript ES modules and Three.js, featuring first-person movement with mouse look, sprint, jump, collision handling, and mobile auto-tour mode. Clicking an expert generates system prompt blueprints for domain-specific queries.",
-    skills: ["Three.js", "WebGL", "JavaScript", "HTML5", "CSS3", "OpenAI API", "3D Graphics"],
+    github: "https://github.com/premshah06/Expert-Park-3D",
+    description: "A static, no-bundler 3D prototype of a first-person park populated by six robot-styled AI experts, each exposing domain expertise through an inspector UI and answering domain-specific questions. Questions route through a lightweight Node server that proxies to Claude (primary) or OpenAI (fallback), with a local canned-response system used when no API key is configured. Features day/night cycles, a minimap, greeting waves, emoji emotes, streaming chat via SSE, and a mobile auto-tour camera mode since Pointer Lock isn't usable on touch devices.",
+    skills: ["Three.js", "WebGL", "JavaScript", "HTML5", "CSS3", "Claude API", "OpenAI API", "3D Graphics"],
     type: "3D Web",
   },
   {
@@ -240,5 +243,37 @@ export const data = [
     description: "An image steganography tool with AES encryption. The GUI-based application allows users to securely hide and retrieve sensitive data within images, providing a practical implementation of cryptographic principles.",
     skills: ["Python", "Tkinter", "AES Encryption", "Cryptography"],
     type: "Security",
+  },
+
+  /* ── Platform / systems projects (2026 batch) ────────────── */
+  {
+    id: 30,
+    name: "RouteDNA",
+    diagram: RouteDNADiagram,
+    accent: '#0284c7',
+    github: "https://github.com/premshah06/RouteDNA",
+    description: "An end-to-end, real-time conveyor/parcel sorting facility simulation and operations platform. A synthetic station simulator streams scan events through gRPC into Kafka; two PyFlink jobs detect stuck packages and misrouted journeys using event-time timers and session windows; every scan lands in both a Parquet data lake and a ClickHouse warehouse, with a Dagster batch layer computing daily throughput and damage reports on schedule. A React 19 + TypeScript frontend gives operators a live floor-plan view, historical trends, and a per-station drill-down, all served over gRPC-Web through an Envoy proxy. Fully deterministic — no LLM or AI model anywhere in the system.",
+    skills: ["Kafka", "PyFlink", "gRPC", "ClickHouse", "Parquet", "Dagster", "React", "TypeScript", "Envoy", "Docker"],
+    type: "Streaming Platform",
+  },
+  {
+    id: 31,
+    name: "RankAPI",
+    diagram: RankAPIDiagram,
+    accent: '#c2600a',
+    github: "https://github.com/premshah06/rankapi",
+    description: "A two-stage personalized recommendation ranking service built on synthetic data with known ground truth, so ranking quality can be measured objectively instead of assumed — precision@10 = 0.773, recall@10 = 0.255 across 300 seeded users. Candidate retrieval does a cheap, broad SQL filter over the catalog; ranking runs a hand-implemented matrix-factorization model (plain SGD, binary cross-entropy, no ML library) only over the surviving candidates. Redis caches responses with a 5-minute TTL, and a React frontend offers a live \"try it yourself\" demo panel querying the real API.",
+    skills: ["FastAPI", "MySQL", "Redis", "Matrix Factorization", "React", "TypeScript", "Docker", "Python"],
+    type: "Recommendation Systems",
+  },
+  {
+    id: 32,
+    name: "AgentOps",
+    diagram: AgentOpsDiagram,
+    accent: '#7c3aed',
+    github: "https://github.com/premshah06/AI-AGENT-PLATFORM",
+    description: "A multi-tenant control plane for running AI agent workflows reliably in production — not another chatbot, but reliability engineering for agents. Define a workflow, connect safe tools, execute it as a durable Temporal job, pause for human approval on risky actions, evaluate the result deterministically, and inspect a complete audit trace with latency, cost, and retry counts. Features idempotent side effects, tenant-scoped policy guardrails with per-run budgets, exponential backoff with model failover, and full OpenTelemetry → Prometheus → Grafana observability.",
+    skills: ["Temporal", "FastAPI", "Next.js", "PostgreSQL", "OpenTelemetry", "Prometheus", "Grafana", "Docker", "Python"],
+    type: "Agent Infrastructure",
   },
 ];
